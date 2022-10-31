@@ -4,10 +4,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, FlexLayoutModule],
+  imports: [BrowserModule, AppRoutingModule, FlexLayoutModule, CountdownModule],
   providers: [],
   bootstrap: [AppComponent],
 })
