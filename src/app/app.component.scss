@@ -16,12 +16,6 @@
   margin-top: 60px;
 }
 
-@media only screen and (max-width: 900px) {
-  .brand-logo {
-    width: 70%;
-  }
-}
-
 .christmas-deadline {
   font-size: 20px;
   font-weight: 600;
@@ -69,5 +63,107 @@
     color: #ffffff;
     text-shadow: 0 0 4px #432d20;
     // border: 2px solid #432d20;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .offer-details {
+    font-size: 16px;
+  }
+  .winning-criteria {
+    font-size: 20px;
+  }
+  .christmas-deadline {
+    font-size: 18px;
+  }
+  .offer {
+    font-size: 26px;
+  }
+
+  .play-game-btn {
+    height: 50px;
+    width: 130px;
+
+    .button-text {
+      font-size: 18px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .offer-details {
+    font-size: 16px;
+  }
+  .winning-criteria {
+    font-size: 20px;
+  }
+  .christmas-deadline {
+    font-size: 16px;
+  }
+  .offer {
+    font-size: 22px;
+  }
+
+  .play-game-btn {
+    height: 45px;
+    width: 120px;
+
+    .button-text {
+      font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .offer-details {
+    font-size: 14px;
+  }
+  .winning-criteria {
+    font-size: 18px;
+  }
+  .christmas-deadline {
+    font-size: 14px;
+  }
+  .offer {
+    font-size: 20px;
+  }
+
+  .play-game-btn {
+    height: 45px;
+    width: 120px;
+
+    .button-text {
+      font-size: 16px;
+    }
+  }
+
+  .offer-card {
+    height: 90%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .brand-logo {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .offer-details {
+    font-size: 12px;
+  }
+  .brand-logo {
+    width: 70%;
+  }
+  .winning-criteria {
+    font-size: 14px;
+  }
+  .offer {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .offer-description {
+    max-height: 100px;
   }
 }
