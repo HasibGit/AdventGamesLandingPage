@@ -6,6 +6,33 @@ body {
   padding: 0;
 }
 
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
 * {
   box-sizing: border-box;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
 }
