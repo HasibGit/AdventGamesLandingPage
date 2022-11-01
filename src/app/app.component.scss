@@ -31,15 +31,15 @@
 
 .offer-card {
   z-index: 2;
-  height: 80%;
   background-color: #ffffff;
   border: 6px solid #432d20;
+  padding: 30px 30px;
 }
 
 .brand-logo {
-  height: 13%;
-  width: 50%;
-  margin-top: 60px;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
 }
 
 .christmas-deadline {
