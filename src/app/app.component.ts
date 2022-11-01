@@ -10,9 +10,19 @@ export class AppComponent implements OnInit {
   title = 'space-shooter-landing-page';
   secondsLeft: number = 0;
   config: CountdownConfig;
+  daysTillChristmasStarts: number;
 
   ngOnInit() {
+    this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
+  }
+
+  getDaysTillChristmas() {
+    const christmasStartDate = new Date('12/25/2022');
+    const today = new Date();
+    this.daysTillChristmasStarts = Math.ceil(
+      (christmasStartDate.getTime() - today.getTime()) / (1000 * 3600 * 24)
+    );
   }
 
   getSecondsLeftTillNextOffer() {
