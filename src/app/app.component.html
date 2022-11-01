@@ -72,7 +72,7 @@
       <section class="countdown mb-30" fxLayout="column" fxLayoutAlign="center center">
         <h2 class="winning-criteria">New Prize In:</h2>
         <!-- <h2 class="winning-criteria">24 hours : 52 minutes : 21 seconds</h2> -->
-        <countdown [config]="{leftTime: secondsLeft}"></countdown>
+        <countdown [config]="config" (event)="handleEvent($event)"></countdown>
       </section>
 
       <button class="play-game-btn"><span class="button-text">Play Game</span></button>
