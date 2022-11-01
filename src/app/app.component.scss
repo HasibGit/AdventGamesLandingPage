@@ -84,16 +84,16 @@
 .play-game-btn {
   height: 65px;
   width: 150px;
-  border: 3px solid #432d20;
+  border: 4px solid #432d20;
   background-color: #b4bd00;
   cursor: pointer;
 
   .button-text {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 800;
     color: #ffffff;
-    text-shadow: 2px 2px 4px #432d20;
-    // border: 2px solid #432d20;
+    text-shadow: 2px 0 #432d20, -2px 0 #432d20, 0 2px #432d20, 0 -2px #432d20,
+      2px 2px #432d20, -2px -2px #432d20, 2px -2px #432d20, -2px 2px #432d20;
   }
 }
 
