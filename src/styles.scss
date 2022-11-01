@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+  font-family: universe-condensed-bold;
+  src: url(assets/fonts/Univers-CondensedBold.woff) format("opentype");
+}
+@font-face {
+  font-family: universe-ultra-condensed;
+  src: url(assets/fonts/Univers-UltraCondensed.woff) format("opentype");
+}
+@font-face {
+  font-family: universe-light-pro-ultra-condensed;
+  src: url(assets/fonts/UniversLTPro-UltCond.ttf) format("opentype");
+}
+
 html,
 body {
   margin: 0;
