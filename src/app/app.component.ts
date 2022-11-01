@@ -36,13 +36,11 @@ export class AppComponent implements OnInit {
 
     // 2. Add labels to each string array
     const hours =
-      '<span class="winning-criteria">' + splittedText[0] + '</span> hours : ';
+      '<span class="countdown-time">' + splittedText[0] + '</span> hours : ';
     const minutes =
-      '<span class="winning-criteria">' +
-      splittedText[2] +
-      '</span> minutes : ';
+      '<span class="countdown-time">' + splittedText[2] + '</span> minutes : ';
     const seconds =
-      '<span class="winning-criteria">' + splittedText[4] + '</span> seconds ';
+      '<span class="countdown-time">' + splittedText[4] + '</span> seconds ';
 
     return hours + minutes + seconds;
   }

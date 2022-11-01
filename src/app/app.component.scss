@@ -20,36 +20,6 @@
   width: 105%;
   z-index: 3;
 }
-@media only screen and (max-width: 1600px) {
-  .snow-img {
-    margin-top: -104px;
-  }
-}
-@media only screen and (max-width: 1350px) {
-  .snow-img {
-    margin-top: -90px;
-  }
-}
-@media only screen and (max-width: 1100px) {
-  .snow-img {
-    margin-top: -78px;
-  }
-}
-@media only screen and (max-width: 700px) {
-  .snow-img {
-    margin-top: -70px;
-  }
-}
-@media only screen and (max-width: 580px) {
-  .snow-img {
-    margin-top: -62px;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .snow-img {
-    margin-top: -55px;
-  }
-}
 
 .bubble-type-1 {
   height: 20px;
@@ -185,5 +155,35 @@
   .offer-card {
     max-width: 90% !important;
     padding: 15px 15px;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .snow-img {
+    margin-top: -104px;
+  }
+}
+@media only screen and (max-width: 1350px) {
+  .snow-img {
+    margin-top: -90px;
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .snow-img {
+    margin-top: -78px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .snow-img {
+    margin-top: -70px;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .snow-img {
+    margin-top: -62px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .snow-img {
+    margin-top: -55px;
   }
 }
