@@ -1,5 +1,5 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center center"
-  [ngClass]="{'SPIGA': 'spiga-background-color'}[currentEnvironment]">
+  [ngClass]="{'SPIGA': 'spiga-background-color', 'EMIL': 'emil-background-color'}[currentEnvironment]">
 
   <section class="bubbles">
     <div class="bubble-type-2" style="top: 10vh; left: 4vw"></div>
@@ -54,12 +54,13 @@
   </section>
 
   <div class="offer-card" fxLayout="column" fxLayoutAlign="space-between center"
-    [ngClass]="{'SPIGA': 'spiga-card-background-color spiga-card-border'}[currentEnvironment]">
+    [ngClass]="{'SPIGA': 'spiga-card-background-color spiga-card-border', 'EMIL': 'emil-card-background-color emil-card-border'}[currentEnvironment]">
     <img src="../assets/images/long snow.svg" alt="" class="snow-img">
     <img src="../assets/images/Pizza.png" alt="" class="pizza-img" *ngIf="currentEnvironment == 'SPIGA'">
     <section class="top-section mt-24" fxLayout="column" fxLayoutAlign="center center">
       <img src="{{brandLogoPath}}" alt="" class="brand-logo mb-20">
-      <h3 class="christmas-deadline mb-24" [ngClass]="{'SPIGA': 'spiga-christmas-deadline-color'}[currentEnvironment]">
+      <h3 class="christmas-deadline mb-24"
+        [ngClass]="{'SPIGA': 'spiga-christmas-deadline-color', 'EMIL': 'emil-christmas-deadline-color'}[currentEnvironment]">
         {{daysTillChristmasStarts}} days till Christmas!</h3>
 
       <section class="offer-description mb-24">
@@ -69,8 +70,11 @@
 
     <section class="bottom-section mb-24" fxLayout="column" fxLayoutAlign="center center">
       <h2 class="winning-criteria mb-5">Get more than <span
-          [ngClass]="{'SPIGA': 'spiga-required-points-color'}[currentEnvironment]">100</span> points to win</h2>
-      <h1 class="offer mb-24" [ngClass]="{'SPIGA': 'spiga-offer-color'}[currentEnvironment]"> 50% on all SPIGA Pizzas
+          [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color'}[currentEnvironment]">100</span>
+        points to win</h2>
+      <h1 class="offer mb-24"
+        [ngClass]="{'SPIGA': 'spiga-offer-color', 'EMIL': 'emil-offer-color'}[currentEnvironment]"> 50% on all SPIGA
+        Pizzas
       </h1>
 
       <section class="countdown mb-30" fxLayout="column" fxLayoutAlign="center center">
@@ -80,7 +84,7 @@
       </section>
 
       <button class="play-game-btn"
-        [ngClass]="{'SPIGA': 'spiga-play-button-border-color spiga-play-button-background-color'}[currentEnvironment]"><span
+        [ngClass]="{'SPIGA': 'spiga-play-button-border-color spiga-play-button-background-color', 'EMIL': 'emil-play-button-border-color emil-play-button-background-color'}[currentEnvironment]"><span
           class="button-text">Play Game</span></button>
     </section>
   </div>

@@ -70,6 +70,27 @@
               ],
               "outputHashing": "all"
             },
+            "emil": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.emil.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -89,6 +110,9 @@
             },
             "spiga": {
               "browserTarget": "space-shooter-landing-page:build:spiga"
+            },
+            "emil": {
+              "browserTarget": "space-shooter-landing-page:build:emil"
             },
             "development": {
               "browserTarget": "space-shooter-landing-page:build:development"

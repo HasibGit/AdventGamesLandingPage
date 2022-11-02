@@ -5,33 +5,51 @@
 .spiga-background-color {
   background-color: #630311;
 }
+.emil-background-color {
+  background-color: #343530;
+}
 .spiga-card-background-color {
   background-color: #ffffff;
+}
+.emil-card-background-color {
+  background-color: #fc9c9d;
 }
 .spiga-card-border {
   border: 6px solid #432d20;
 }
-
+.emil-card-border {
+  border: 6px solid #ffffff;
+}
 .spiga-christmas-deadline-color {
   color: #bfc835;
 }
-
+.emil-christmas-deadline-color {
+  color: #ffffff;
+}
 .spiga-required-points-color {
   color: #bfc835;
 }
-
+.emil-required-points-color {
+  color: #ffffff;
+}
 .spiga-offer-color {
   color: #b4bd00;
 }
-
+.emil-offer-color {
+  color: #ffffff;
+}
 .spiga-play-button-border-color {
   border-color: #432d20;
 }
-
+.emil-play-button-border-color {
+  border-color: #ffffff;
+}
 .spiga-play-button-background-color {
   background-color: #b4bd00;
 }
-
+.emil-play-button-background-color {
+  background-color: #fc9c9d;
+}
 .container {
   height: 100vh;
   width: 100vw;
@@ -62,7 +80,6 @@
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #eee4e5;
   position: absolute;
 }
 
@@ -70,7 +87,6 @@
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #caaaaf;
   position: absolute;
 }
 
@@ -78,7 +94,6 @@
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #863a46;
   position: absolute;
 }
 
