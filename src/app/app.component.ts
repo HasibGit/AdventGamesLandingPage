@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown/interfaces';
+import { environment } from 'src/environments/environment';
+import { spigaConfig } from '../Spiga_Landing_Page_Config/spiga-config';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +13,22 @@ export class AppComponent implements OnInit {
   secondsLeft: number = 0;
   config: CountdownConfig;
   daysTillChristmasStarts: number;
+  currentEnvironment: string;
+  brandLogoPath: string;
+  offerDetails: string;
 
   ngOnInit() {
+    this.currentEnvironment = environment.environmentName;
+    this.setEnvironmentSpecificConfigs();
     this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
+  }
+
+  setEnvironmentSpecificConfigs() {
+    if (this.currentEnvironment == 'SPIGA') {
+      this.brandLogoPath = spigaConfig.brandLogoPath;
+      this.offerDetails = spigaConfig.spigaOfferDetails;
+    }
   }
 
   getDaysTillChristmas() {
