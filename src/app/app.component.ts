@@ -104,6 +104,27 @@ export class AppComponent implements OnInit, AfterViewInit {
       [...typeThreeBubbles].forEach((element) => {
         this.renderer.setStyle(element, 'backgroundColor', '#71716f');
       });
+    } else if (
+      this.currentEnvironment == 'ANDIAMO' ||
+      this.currentEnvironment == 'SV_RESTAURANT'
+    ) {
+      let typeOneBubbles =
+        this.elemRef.nativeElement.querySelectorAll('.bubble-type-1');
+      [...typeOneBubbles].forEach((element) => {
+        this.renderer.setStyle(element, 'backgroundColor', '#f4f4f4');
+      });
+
+      let typeTwoBubbles =
+        this.elemRef.nativeElement.querySelectorAll('.bubble-type-2');
+      [...typeTwoBubbles].forEach((element) => {
+        this.renderer.setStyle(element, 'backgroundColor', '#dddddf');
+      });
+
+      let typeThreeBubbles =
+        this.elemRef.nativeElement.querySelectorAll('.bubble-type-3');
+      [...typeThreeBubbles].forEach((element) => {
+        this.renderer.setStyle(element, 'backgroundColor', '#b9babc');
+      });
     }
   }
 
@@ -111,9 +132,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (this.currentEnvironment == 'SPIGA') {
       this.brandLogoPath = spigaConfig.brandLogoPath;
       this.offerDetails = spigaConfig.spigaOfferDetails;
-    } else {
+    } else if (this.currentEnvironment == 'EMIL') {
       this.brandLogoPath = emilConfig.brandLogoPath;
       this.offerDetails = emilConfig.emilOfferDetails;
+    } else if (this.currentEnvironment == 'ANDIAMO') {
+      this.brandLogoPath = andiamoConfig.brandLogoPath;
+      this.offerDetails = andiamoConfig.andiamoOfferDetails;
+    } else if (this.currentEnvironment == 'SV_RESTAURANT') {
+      this.brandLogoPath = svConfig.brandLogoPath;
+      this.offerDetails = svConfig.svOfferDetails;
     }
   }
 

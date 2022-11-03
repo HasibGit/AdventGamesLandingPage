@@ -17,8 +17,20 @@
   src: url(assets/fonts/Underware-Dolly-Pro.woff) format("opentype");
 }
 @font-face {
-  font-family: frutifer;
+  font-family: frutiger;
   src: url(assets/fonts/Frutiger.woff) format("opentype");
+}
+@font-face {
+  font-family: frutiger-bold;
+  src: url(assets/fonts/FTB.ttf) format("opentype");
+}
+@font-face {
+  font-family: frutiger-light-condensed;
+  src: url(assets/fonts/FTLC.ttf) format("opentype");
+}
+@font-face {
+  font-family: frutiger-ultra-condensed;
+  src: url(assets/fonts/FTUBL.ttf) format("opentype");
 }
 
 html,

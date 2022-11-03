@@ -9,7 +9,7 @@
   font-family: "underware-dolly-pro", "arial", sans-serif;
 }
 .andiamo-sv-font {
-  font-family: "frutifer", "arial", sans-serif;
+  font-family: "frutiger", "arial", sans-serif;
 }
 
 .spiga-background-color {
@@ -18,11 +18,17 @@
 .emil-background-color {
   background-color: #343530;
 }
+.andiamo-background-color {
+  background-color: #9b9c9e;
+}
 .spiga-card-background-color {
   background-color: #ffffff;
 }
 .emil-card-background-color {
   background-color: #fc9c9d;
+}
+.andiamo-card-background-color {
+  background-color: #ffffff;
 }
 .spiga-card-border {
   border: 6px solid #432d20;
@@ -30,11 +36,17 @@
 .emil-card-border {
   border: 6px solid #ffffff;
 }
+.andiamo-card-border {
+  border: 6px solid #2b700c;
+}
 .spiga-christmas-deadline-color {
   color: #bfc835;
 }
 .emil-christmas-deadline-color {
   color: #ffffff;
+}
+.andiamo-christmas-deadline-color {
+  color: #9bca40;
 }
 .spiga-required-points-color {
   color: #bfc835;
@@ -42,11 +54,17 @@
 .emil-required-points-color {
   color: #ffffff;
 }
+.andiamo-required-points-color {
+  color: #8ec327;
+}
 .spiga-offer-color {
   color: #b4bd00;
 }
 .emil-offer-color {
   color: #ffffff;
+}
+.andiamo-offer-color {
+  color: #8cc223;
 }
 .spiga-play-button-border-color {
   border-color: #432d20;
@@ -54,11 +72,17 @@
 .emil-play-button-border-color {
   border-color: #ffffff;
 }
+.andiamo-play-button-border-color {
+  border-color: #2c700d;
+}
 .spiga-play-button-background-color {
   background-color: #b4bd00;
 }
 .emil-play-button-background-color {
   background-color: #fc9c9d;
+}
+.andiamo-play-button-background-color {
+  background-color: #8cc222;
 }
 .container {
   height: 100vh;
