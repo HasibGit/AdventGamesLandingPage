@@ -91,6 +91,48 @@
               ],
               "outputHashing": "all"
             },
+            "andiamo": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.andiamo.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "sv-restaurant": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.svrestaurant.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -113,6 +155,12 @@
             },
             "emil": {
               "browserTarget": "space-shooter-landing-page:build:emil"
+            },
+            "andiamo": {
+              "browserTarget": "space-shooter-landing-page:build:andiamo"
+            },
+            "sv-restaurant": {
+              "browserTarget": "space-shooter-landing-page:build:sv-restaurant"
             },
             "development": {
               "browserTarget": "space-shooter-landing-page:build:development"

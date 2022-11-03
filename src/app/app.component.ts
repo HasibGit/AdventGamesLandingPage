@@ -7,8 +7,10 @@ import {
 } from '@angular/core';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown/interfaces';
 import { environment } from 'src/environments/environment';
-import { spigaConfig } from '../Spiga_Landing_Page_Config/spiga-config';
-import { emilConfig } from '../Emil_Landing_Page_Config/emil-config';
+import { spigaConfig } from '../Landing_Page_Configs/Spiga_Landing_Page_Config/spiga-config';
+import { emilConfig } from '../Landing_Page_Configs/Emil_Landing_Page_Config/emil-config';
+import { andiamoConfig } from '../Landing_Page_Configs/Andiamo_Landing_Page_Config/andiamo-config';
+import { svConfig } from '../Landing_Page_Configs/SV_Restaurant_Landing_Page_Config/sv-config';
 import { Title } from '@angular/platform-browser';
 
 @Component({
