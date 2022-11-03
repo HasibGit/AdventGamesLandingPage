@@ -146,7 +146,7 @@
 
 .andiamo-brand-logo {
   width: 50%;
-  max-width: 150px;
+  max-width: 120px;
   height: auto;
 }
 
@@ -166,11 +166,22 @@
   font-weight: 600;
   color: #432d1f;
 }
+.andiamo-offer-details {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #9ea2a4;
+}
 
 .winning-criteria {
   font-size: 20px;
   font-weight: 600;
   color: #432d1f;
+}
+.andiamo-winning-criteria {
+  font-size: 20px;
+  font-weight: 600;
+  color: #9ea0a2;
 }
 
 .offer {
@@ -220,8 +231,14 @@
   .offer-details {
     font-size: 14px;
   }
+  .andiamo-offer-details {
+    font-size: 13px;
+  }
   .winning-criteria {
     font-size: 16px;
+  }
+  .andiamo-winning-criteria {
+    font-size: 14px;
   }
   .offer {
     font-size: 20px;
