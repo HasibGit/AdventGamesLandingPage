@@ -9,6 +9,7 @@ import { CountdownConfig, CountdownEvent } from 'ngx-countdown/interfaces';
 import { environment } from 'src/environments/environment';
 import { spigaConfig } from '../Spiga_Landing_Page_Config/spiga-config';
 import { emilConfig } from '../Emil_Landing_Page_Config/emil-config';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,31 @@ export class AppComponent implements OnInit, AfterViewInit {
   brandLogoPath: string;
   offerDetails: string;
 
-  constructor(private renderer: Renderer2, private elemRef: ElementRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private elemRef: ElementRef,
+    private titleService: Title
+  ) {
+    switch (this.currentEnvironment) {
+      case 'DEV':
+        this.titleService.setTitle('Spiga');
+        break;
+      case 'SPIGA':
+        this.titleService.setTitle('Spiga');
+        break;
+      case 'EMIL':
+        this.titleService.setTitle('Emil');
+        break;
+      case 'ANDIAMO':
+        this.titleService.setTitle('Andiamo');
+        break;
+      case 'SV_RESTAURANT':
+        this.titleService.setTitle('SV Restaurant');
+        break;
+      default:
+        this.titleService.setTitle('Spiga');
+    }
+  }
 
   ngOnInit() {
     this.currentEnvironment = environment.environmentName;
