@@ -239,4 +239,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     return hours + minutes + seconds;
   }
+
+  openGameInNewTab() {
+    window.open(environment.gameUrl, '_blank');
+  }
 }

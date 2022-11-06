@@ -95,7 +95,8 @@
 
       <button class="play-game-btn"
         [ngClass]="{'SPIGA': 'spiga-play-button-border-color spiga-play-button-background-color spiga-font', 'EMIL': 'emil-play-button-border-color emil-play-button-background-color emil-font', 'ANDIAMO': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font', 'SV_RESTAURANT': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font'}[currentEnvironment]"><span
-          class="button-text">Play Game</span></button>
+          class="button-text" (click)="openGameInNewTab()">Play
+          Game</span></button>
     </section>
   </div>
 </div>
