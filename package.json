@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve -c emil",
     "build": "ng build",
+    "build-prod": "ng build --prod",
     "build-spiga": "ng build --prod --configuration=spiga",
     "build-emil": "ng build --prod --configuration=emil",
     "build-andiamo": "ng build --prod --configuration=andiamo",
