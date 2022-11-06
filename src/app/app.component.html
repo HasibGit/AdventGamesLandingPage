@@ -60,42 +60,45 @@
     <section class="top-section mt-24" fxLayout="column" fxLayoutAlign="center center">
       <img src="{{brandLogoPath}}" alt="" class="brand-logo mb-20"
         [ngClass]="{'SPIGA': 'brand-logo', 'EMIL': 'andiamo-brand-logo', 'ANDIAMO': 'andiamo-brand-logo', 'SV_RESTAURANT': 'brand-logo'}[currentEnvironment]">
-      <h3 class="christmas-deadline mb-24"
-        [ngClass]="{'SPIGA': 'spiga-christmas-deadline-color spiga-font', 'EMIL': 'emil-christmas-deadline-color emil-font', 'ANDIAMO': 'andiamo-christmas-deadline-color andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-christmas-deadline-color andiamo-sv-font'}[currentEnvironment]">
+      <h3 class="mb-24"
+        [ngClass]="{'SPIGA': 'christmas-deadline spiga-christmas-deadline-color spiga-font', 'EMIL': 'emil-christmas-deadline emil-christmas-deadline-color emil-font', 'ANDIAMO': 'christmas-deadline andiamo-christmas-deadline-color andiamo-sv-font', 'SV_RESTAURANT': 'christmas-deadline andiamo-christmas-deadline-color andiamo-sv-font'}[currentEnvironment]">
         {{daysTillChristmasStarts}} days till Christmas!</h3>
 
       <section class="offer-description mb-24">
         <p
-          [ngClass]="{'SPIGA': 'offer-details spiga-font', 'EMIL': 'offer-details emil-font', 'ANDIAMO': ' andiamo-offer-details andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-offer-details andiamo-sv-font'}[currentEnvironment]">
+          [ngClass]="{'SPIGA': 'offer-details spiga-font', 'EMIL': 'emil-offer-details emil-font', 'ANDIAMO': ' andiamo-offer-details andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-offer-details andiamo-sv-font'}[currentEnvironment]">
           {{offerDetails}}</p>
       </section>
     </section>
 
     <section class="bottom-section mb-24" fxLayout="column" fxLayoutAlign="center center">
       <h2 class="mb-5"
-        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
+        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
         Get
         more than <span
           [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">100</span>
         points to win</h2>
-      <h1 class="offer mb-24"
-        [ngClass]="{'SPIGA': 'spiga-offer-color spiga-font', 'EMIL': 'emil-offer-color emil-font', 'ANDIAMO': 'andiamo-offer-color andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-offer-color andiamo-sv-font'}[currentEnvironment]">
+      <h1 class="mb-24"
+        [ngClass]="{'SPIGA': 'offer spiga-offer-color spiga-font', 'EMIL': 'emil-offer emil-offer-color emil-font', 'ANDIAMO': 'offer andiamo-offer-color andiamo-sv-font', 'SV_RESTAURANT': 'offer andiamo-offer-color andiamo-sv-font'}[currentEnvironment]">
         50% on all SPIGA
         Pizzas
       </h1>
 
       <section class="countdown mb-30" fxLayout="column" fxLayoutAlign="center center">
         <h2
-          [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
+          [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
           New
           Prize In:</h2>
         <!-- <h2 class="winning-criteria">24 hours : 52 minutes : 21 seconds</h2> -->
-        <countdown [config]="config" (event)="handleEvent($event)"></countdown>
+        <countdown [config]="config" (event)="handleEvent($event)"
+          [ngClass]="{'SPIGA': 'count-down spiga-font', 'EMIL': 'emil-count-down emil-font', 'ANDIAMO': 'count-down andiamo-sv-font', 'SV_RESTAURANT': 'count-down andiamo-sv-font'}[currentEnvironment]">
+        </countdown>
       </section>
 
       <button class="play-game-btn"
         [ngClass]="{'SPIGA': 'spiga-play-button-border-color spiga-play-button-background-color spiga-font', 'EMIL': 'emil-play-button-border-color emil-play-button-background-color emil-font', 'ANDIAMO': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font', 'SV_RESTAURANT': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font'}[currentEnvironment]"><span
-          class="button-text" (click)="openGameInNewTab()">Play
+          [ngClass]="{'SPIGA': 'button-text', 'EMIL': 'emil-button-text', 'ANDIAMO': 'button-text', 'SV_RESTAURANT': 'button-text'}[currentEnvironment]"
+          (click)="openGameInNewTab()">Play
           Game</span></button>
     </section>
   </div>

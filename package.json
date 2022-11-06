@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -c production",
+    "start": "ng serve -c emil",
     "build": "ng build",
     "build-prod": "ng build --configuration production",
     "build-spiga": "ng build --configuration spiga",

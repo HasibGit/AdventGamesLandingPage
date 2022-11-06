@@ -150,6 +150,10 @@
   font-size: 20px;
   font-weight: 600;
 }
+.emil-christmas-deadline {
+  font-size: 17.5px;
+  font-weight: 600;
+}
 
 .offer-description {
   max-height: 200px;
@@ -162,6 +166,14 @@
   font-weight: 600;
   color: #432d1f;
 }
+.emil-offer-details {
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #432d1f;
+}
+
 .andiamo-offer-details {
   text-align: center;
   font-size: 16px;
@@ -171,6 +183,11 @@
 
 .winning-criteria {
   font-size: 20px;
+  font-weight: 600;
+  color: #432d1f;
+}
+.emil-winning-criteria {
+  font-size: 17.5px;
   font-weight: 600;
   color: #432d1f;
 }
@@ -184,6 +201,10 @@
   font-size: 30px;
   font-weight: 800;
 }
+.emil-offer {
+  font-size: 27.5px;
+  font-weight: 800;
+}
 
 .play-game-btn {
   height: 50px;
@@ -193,6 +214,13 @@
 
   .button-text {
     font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 2px 0 #432d20, -2px 0 #432d20, 0 2px #432d20, 0 -2px #432d20,
+      2px 2px #432d20, -2px -2px #432d20, 2px -2px #432d20, -2px 2px #432d20;
+  }
+  .emil-button-text {
+    font-size: 23.5px;
     font-weight: 800;
     color: #ffffff;
     text-shadow: 2px 0 #432d20, -2px 0 #432d20, 0 2px #432d20, 0 -2px #432d20,
@@ -220,6 +248,13 @@
       text-shadow: 2px 0 #432d20, -2px 0 #432d20, 0 2px #432d20, 0 -2px #432d20,
         2px 2px #432d20, -2px -2px #432d20, 2px -2px #432d20, -2px 2px #432d20;
     }
+    .emil-button-text {
+      font-size: 17.5px;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 2px 0 #432d20, -2px 0 #432d20, 0 2px #432d20, 0 -2px #432d20,
+        2px 2px #432d20, -2px -2px #432d20, 2px -2px #432d20, -2px 2px #432d20;
+    }
   }
 }
 
@@ -227,17 +262,26 @@
   .offer-details {
     font-size: 14px;
   }
+  .emil-offer-details {
+    font-size: 11.5px;
+  }
   .andiamo-offer-details {
     font-size: 13px;
   }
   .winning-criteria {
     font-size: 16px;
   }
+  .emil-winning-criteria {
+    font-size: 13.5px;
+  }
   .andiamo-winning-criteria {
     font-size: 14px;
   }
   .offer {
     font-size: 20px;
+  }
+  .emil-offer {
+    font-size: 17.5px;
   }
 }
 

@@ -171,71 +171,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     // 1. Seperate string between spaces
     const splittedText = text.split(/(\s+)/);
 
-    let hours = '';
-    let minutes = '';
-    let seconds = '';
-    // 2. Add labels to each string array
-    switch (this.currentEnvironment) {
-      case 'SPIGA':
-        hours =
-          '<span class="count-down spiga-font">' +
-          splittedText[0] +
-          ' hours : </span>';
-        minutes =
-          '<span class="count-down spiga-font">' +
-          splittedText[2] +
-          ' minutes : </span>';
-        seconds =
-          '<span class="count-down spiga-font">' +
-          splittedText[4] +
-          ' seconds </span>';
-        break;
-
-      case 'EMIL':
-        hours =
-          '<span class="count-down emil-font">' +
-          splittedText[0] +
-          ' hours : </span>';
-        minutes =
-          '<span class="count-down emil-font">' +
-          splittedText[2] +
-          ' minutes : </span>';
-        seconds =
-          '<span class="count-down emil-font">' +
-          splittedText[4] +
-          ' seconds </span>';
-        break;
-
-      case 'ANDIAMO':
-        hours =
-          '<span class="count-down andiamo-sv-font">' +
-          splittedText[0] +
-          ' hours : </span>';
-        minutes =
-          '<span class="count-down andiamo-sv-font">' +
-          splittedText[2] +
-          ' minutes : </span>';
-        seconds =
-          '<span class="count-down andiamo-sv-font">' +
-          splittedText[4] +
-          ' seconds </span>';
-        break;
-
-      case 'SV_RESTAURANT':
-        hours =
-          '<span class="count-down andiamo-sv-font">' +
-          splittedText[0] +
-          ' hours : </span>';
-        minutes =
-          '<span class="count-down andiamo-sv-font">' +
-          splittedText[2] +
-          ' minutes : </span>';
-        seconds =
-          '<span class="count-down andiamo-sv-font">' +
-          splittedText[4] +
-          ' seconds </span>';
-        break;
-    }
+    const hours = '<span>' + splittedText[0] + ' hours : </span>';
+    const minutes = '<span>' + splittedText[2] + ' minutes : </span>';
+    const seconds = '<span>' + splittedText[4] + ' seconds </span>';
 
     return hours + minutes + seconds;
   }

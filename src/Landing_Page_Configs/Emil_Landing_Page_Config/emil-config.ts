@@ -1,5 +1,5 @@
 export const emilConfig = {
   brandLogoPath: '../assets/images/emil_brand_logo.png',
   emilOfferDetails:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque molestias fugiatquod error beatae laudantium totam soluta impedit, accusamus eligendi nostrum. Modi, delectus obcaecati in commodidignissimos voluptates at deserunt eligendi quia exercitationem beatae ullam consequuntur perspiciatis laboriosam molestiae facilis repellendus sed esse nemo id. Hic commodi quaerat veritatis error?',
+    'Help! Our Andiamo Delivery order to the moon got lost in space! Collect as many bowls as possible and as a thank you we will give a great prize for the highest high score of the day! So it pays off to participate every day! We count on your help!',
 };
