@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -c andiamo",
+    "start": "ng serve -c emil",
     "build": "ng build",
+    "build-spiga": "ng build --prod --configuration=spiga",
+    "build-emil": "ng build --prod --configuration=emil",
+    "build-andiamo": "ng build --prod --configuration=andiamo",
+    "build-sv-restaurant": "ng build --prod --configuration=sv-restaurant",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
