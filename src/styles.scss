@@ -36,6 +36,14 @@
   font-family: raleway-regular;
   src: url(assets/fonts/Raleway-Regular.ttf) format("opentype");
 }
+@font-face {
+  font-family: raleway-semi-bold;
+  src: url(assets/fonts/Raleway-SemiBold.ttf) format("opentype");
+}
+@font-face {
+  font-family: raleway-bold;
+  src: url(assets/fonts/Raleway-Bold.ttf) format("opentype");
+}
 
 html,
 body {
@@ -58,7 +66,7 @@ p {
   font-family: "universe-condensed-bold", "arial", sans-serif;
 }
 .emil-font {
-  font-family: "raleway-regular", "arial", sans-serif;
+  font-family: "raleway-bold", "arial", sans-serif;
 }
 .andiamo-sv-font {
   font-family: "frutiger", "arial", sans-serif;
