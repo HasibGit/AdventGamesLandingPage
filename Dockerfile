@@ -1,4 +1,4 @@
-FROM node:12.16.1-alpine as node
+FROM node:18.12.0 as node
 
 ARG ci_build
 
