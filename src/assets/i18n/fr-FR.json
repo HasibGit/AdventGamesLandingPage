@@ -4,7 +4,8 @@
   "EMIL_OFFER_DETAILS": "Au secours ! Notre commande Andiamo Delivery pour la lune s'est perdue dans l'espace ! Aidez-nous à récupérer autant de bols que possible et, en guise de remerciement, nous vous offrons des prix superbes pour le meilleur score du jour ! Participer chaque jour vaut donc la peine ! Nous comptons sur ton aide !",
   "ANDIAMO_OFFER_DETAILS": "Au secours ! Notre commande Andiamo Delivery pour la lune s'est perdue dans l'espace ! Aidez-nous à récupérer autant de bols que possible et, en guise de remerciement, nous vous offrons des prix superbes pour le meilleur score du jour ! Participer chaque jour vaut donc la peine ! Nous comptons sur ton aide !",
   "SV_RESTAURANT_OFFER_DETAILS": "Que les jeux commencent ! Chaque semaine, nous débloquons un nouveau jeu et vous avez une semaine pour gagner le prix de la semaine ! Nous tirerons au sort le prix de la semaine parmi les 20 meilleurs joueurs de la semaine ! Cela vaut donc la peine de s'accrocher !",
-  "SPIGA_WINNING_CRITERIA": "Obtenez plus de 200 points pour gagner",
+  "SPIGA_WINNING_CRITERIA_LEFT": "Obtenez plus de ",
+  "SPIGA_WINNING_CRITERIA_RIGHT": " points pour gagner",
   "SPIGA_OFFERS": {
     "DAY_1": "1 thé glacé gratuit avec ta pizza",
     "DAY_2": "Un bon de réduction de 2 pizze pour le prix d'une",

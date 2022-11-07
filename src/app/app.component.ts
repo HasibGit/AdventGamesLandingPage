@@ -25,6 +25,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   config: CountdownConfig;
   daysTillChristmasStarts: number;
   currentEnvironment: string;
+  currentlySelectedLanguage: string = 'de-DE';
   brandLogoPath: string;
   offerDetails: string;
   languages: { key: string; value: string }[] = [
@@ -62,6 +63,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   selectLang(language: { key: string; value: string }) {
+    this.currentlySelectedLanguage = language.key;
     this.translateService.use(language.key);
   }
 
@@ -213,9 +215,27 @@ export class AppComponent implements OnInit, AfterViewInit {
     // 1. Seperate string between spaces
     const splittedText = text.split(/(\s+)/);
 
-    const hours = '<span>' + splittedText[0] + ' hours : </span>';
-    const minutes = '<span>' + splittedText[2] + ' minutes : </span>';
-    const seconds = '<span>' + splittedText[4] + ' seconds </span>';
+    // const hours = '<span>' + splittedText[0] + ' hours : </span>';
+    // const minutes = '<span>' + splittedText[2] + ' minutes : </span>';
+    // const seconds = '<span>' + splittedText[4] + ' seconds </span>';
+
+    let hours = '';
+    let minutes = '';
+    let seconds = '';
+
+    if (this.currentlySelectedLanguage == 'de-DE') {
+      hours = '<span>' + splittedText[0] + ' Stunden : </span>';
+      minutes = '<span>' + splittedText[2] + ' Minuten : </span>';
+      seconds = '<span>' + splittedText[4] + ' Sekunden </span>';
+    } else if (this.currentlySelectedLanguage == 'en-US') {
+      hours = '<span>' + splittedText[0] + ' hours : </span>';
+      minutes = '<span>' + splittedText[2] + ' minutes : </span>';
+      seconds = '<span>' + splittedText[4] + ' seconds </span>';
+    } else if (this.currentlySelectedLanguage == 'fr-FR') {
+      hours = '<span>' + splittedText[0] + ' heures : </span>';
+      minutes = '<span>' + splittedText[2] + ' minutes : </span>';
+      seconds = '<span>' + splittedText[4] + ' secondes </span>';
+    }
 
     return hours + minutes + seconds;
   }

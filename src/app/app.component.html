@@ -81,23 +81,29 @@
     </section>
 
     <section class="bottom-section mb-24" fxLayout="column" fxLayoutAlign="center center">
-      <h2 class="mb-5"
+      <!-- <h2 class="mb-5"
         [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
         Get
         more than <span
           [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">100</span>
-        points to win</h2>
-      <h1 class="mb-24"
+        points to win</h2> -->
+
+      <h2 class="mb-5"
+        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
+        <span>{{'SPIGA_WINNING_CRITERIA_LEFT' | translate}}</span>
+        <span
+          [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">200</span>
+        <span>{{'SPIGA_WINNING_CRITERIA_RIGHT' | translate}}</span>
+      </h2>
+      <h1 class="offer-text mb-24"
         [ngClass]="{'SPIGA': 'offer spiga-offer-color spiga-font', 'EMIL': 'emil-offer emil-offer-color emil-font', 'ANDIAMO': 'offer andiamo-offer-color andiamo-sv-font', 'SV_RESTAURANT': 'offer andiamo-offer-color andiamo-sv-font'}[currentEnvironment]">
-        50% on all SPIGA
-        Pizzas
+        {{'SPIGA_OFFERS.DAY_1' | translate}}
       </h1>
 
       <section class="countdown mb-30" fxLayout="column" fxLayoutAlign="center center">
         <h2
           [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
-          New
-          Prize In:</h2>
+          {{'COUNTDOWN_HEADER' | translate}}</h2>
         <!-- <h2 class="winning-criteria">24 hours : 52 minutes : 21 seconds</h2> -->
         <countdown [config]="config" (event)="handleEvent($event)"
           [ngClass]="{'SPIGA': 'count-down spiga-font', 'EMIL': 'emil-count-down emil-font', 'ANDIAMO': 'andiamo-count-down andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-count-down andiamo-sv-font'}[currentEnvironment]">
@@ -107,8 +113,7 @@
       <button class="play-game-btn"
         [ngClass]="{'SPIGA': 'spiga-play-button-border-color spiga-play-button-background-color spiga-font', 'EMIL': 'emil-play-button-border-color emil-play-button-background-color emil-font', 'ANDIAMO': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font', 'SV_RESTAURANT': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font'}[currentEnvironment]"><span
           [ngClass]="{'SPIGA': 'button-text', 'EMIL': 'emil-button-text', 'ANDIAMO': 'andiamo-button-text', 'SV_RESTAURANT': 'andiamo-button-text'}[currentEnvironment]"
-          (click)="openGameInNewTab()">Play
-          Game</span></button>
+          (click)="openGameInNewTab()">{{'PLAY_GAME' | translate}}</span></button>
     </section>
   </div>
 </div>

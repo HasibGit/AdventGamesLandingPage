@@ -4,7 +4,8 @@
   "EMIL_OFFER_DETAILS": "Hilfe! Unsere Andiamo Delivery Bestellung zum Mond ist im All verloren gegangen! Hilf uns so viele Bowls wie möglich wieder einzusammeln und als Dankeschön gibt es mega tolle Preise für den höchsten High Score des Tages! Täglich mitmachen lohnt sich also! Wir zählen auf deine Hilfe!",
   "ANDIAMO_OFFER_DETAILS": "Hilfe! Unsere Andiamo Delivery Bestellung zum Mond ist im All verloren gegangen! Hilf uns so viele Bowls wie möglich wieder einzusammeln und als Dankeschön gibt es mega tolle Preise für den höchsten High Score des Tages! Täglich mitmachen lohnt sich also! Wir zählen auf deine Hilfe!",
   "SV_RESTAURANT_OFFER_DETAILS": "Lasst die Spiele beginnen! Wöchentlich schalten wir ein neues Spiel frei und ihr habt 1 Woche Zeit, um den Wochenpreis zu gewinnen! Unter den Top 20 High Scorern der Woche, verlosen wir dann den Wochenpreis! Dran bleiben lohnt sich also!",
-  "SPIGA_WINNING_CRITERIA": "Erreiche mehr als 200 Punkte, um zu gewinnen",
+  "SPIGA_WINNING_CRITERIA_LEFT": "Erreiche mehr als ",
+  "SPIGA_WINNING_CRITERIA_RIGHT": " Punkte, um zu gewinnen",
   "SPIGA_OFFERS": {
     "DAY_1": "1 gratis Eistee zu deiner Pizza",
     "DAY_2": "Einen Gutschein von 2 für 1 Pizza",
