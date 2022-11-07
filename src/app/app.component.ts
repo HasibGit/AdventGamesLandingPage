@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   offerDetails: string;
   languages: { key: string; value: string }[] = [
     {
-      key: 'en-EN',
+      key: 'en-US',
       value: 'English',
     },
     {
