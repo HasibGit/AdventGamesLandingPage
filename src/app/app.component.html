@@ -91,13 +91,13 @@
           Prize In:</h2>
         <!-- <h2 class="winning-criteria">24 hours : 52 minutes : 21 seconds</h2> -->
         <countdown [config]="config" (event)="handleEvent($event)"
-          [ngClass]="{'SPIGA': 'count-down spiga-font', 'EMIL': 'emil-count-down emil-font', 'ANDIAMO': 'count-down andiamo-sv-font', 'SV_RESTAURANT': 'count-down andiamo-sv-font'}[currentEnvironment]">
+          [ngClass]="{'SPIGA': 'count-down spiga-font', 'EMIL': 'emil-count-down emil-font', 'ANDIAMO': 'andiamo-count-down andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-count-down andiamo-sv-font'}[currentEnvironment]">
         </countdown>
       </section>
 
       <button class="play-game-btn"
         [ngClass]="{'SPIGA': 'spiga-play-button-border-color spiga-play-button-background-color spiga-font', 'EMIL': 'emil-play-button-border-color emil-play-button-background-color emil-font', 'ANDIAMO': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font', 'SV_RESTAURANT': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font'}[currentEnvironment]"><span
-          [ngClass]="{'SPIGA': 'button-text', 'EMIL': 'emil-button-text', 'ANDIAMO': 'button-text', 'SV_RESTAURANT': 'button-text'}[currentEnvironment]"
+          [ngClass]="{'SPIGA': 'button-text', 'EMIL': 'emil-button-text', 'ANDIAMO': 'andiamo-button-text', 'SV_RESTAURANT': 'button-text'}[currentEnvironment]"
           (click)="openGameInNewTab()">Play
           Game</span></button>
     </section>

@@ -114,11 +114,23 @@ p {
     //   -2px -2px #fff, 2px -2px #fff, -2px 2px #fff;
   }
 }
+.andiamo-count-down {
+  span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #9ea0a2;
+  }
+}
 
 @media only screen and (max-width: 450px) {
   .count-down {
     span {
       font-size: 18px;
+    }
+  }
+  .andiamo-count-down {
+    span {
+      font-size: 16px;
     }
   }
   .emil-count-down {
@@ -133,6 +145,11 @@ p {
       font-size: 16px;
     }
   }
+  .andiamo-count-down {
+    span {
+      font-size: 15px;
+    }
+  }
   .emil-count-down {
     span {
       font-size: 13.5px;
@@ -145,9 +162,21 @@ p {
       font-size: 15px;
     }
   }
+  .andiamo-count-down {
+    span {
+      font-size: 15px;
+    }
+  }
   .emil-count-down {
     span {
       font-size: 12.5px !important;
+    }
+  }
+}
+@media only screen and (max-width: 370px) {
+  .andiamo-count-down {
+    span {
+      font-size: 14.2px;
     }
   }
 }
