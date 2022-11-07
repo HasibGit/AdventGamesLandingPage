@@ -49,6 +49,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 h1,
@@ -179,4 +180,12 @@ p {
       font-size: 14.2px;
     }
   }
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.mat-chip {
+  font-weight: 600 !important;
 }

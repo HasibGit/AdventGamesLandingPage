@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -c sv-restaurant",
+    "start": "ng serve -c spiga",
     "build": "ng build",
     "build-prod": "ng build --configuration production",
     "build-spiga": "ng build --configuration spiga",
@@ -22,6 +22,7 @@
     "@angular/core": "^14.2.0",
     "@angular/flex-layout": "^14.0.0-beta.41",
     "@angular/forms": "^14.2.0",
+    "@angular/material": "^14.2.6",
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",

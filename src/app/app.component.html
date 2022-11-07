@@ -1,4 +1,4 @@
-<div class="container" fxLayout="row" fxLayoutAlign="center center"
+<div class="container" fxLayout="column" fxLayoutAlign="center center"
   [ngClass]="{'SPIGA': 'spiga-background-color', 'EMIL': 'emil-background-color', 'ANDIAMO': 'andiamo-background-color', 'SV_RESTAURANT': 'andiamo-background-color'}[currentEnvironment]">
 
   <section class="bubbles">
@@ -52,6 +52,15 @@
     <div class="bubble-type-1" style="top: 94vh; left: 80vw"></div>
     <div class="bubble-type-2" style="top: 95vh; left:95vw"></div>
   </section>
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="lang-selection">
+    <mat-chip-list aria-label="lang selection">
+      <mat-chip>English</mat-chip>
+      <mat-chip>French</mat-chip>
+      <mat-chip>German</mat-chip>
+    </mat-chip-list>
+  </div>
+
 
   <div class="offer-card" fxLayout="column" fxLayoutAlign="space-between center"
     [ngClass]="{'SPIGA': 'spiga-card-background-color spiga-card-border', 'EMIL': 'emil-card-background-color emil-card-border', 'ANDIAMO': 'andiamo-card-background-color andiamo-card-border', 'SV_RESTAURANT': 'andiamo-card-background-color andiamo-card-border'}[currentEnvironment]">

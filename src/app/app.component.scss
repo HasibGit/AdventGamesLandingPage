@@ -127,6 +127,12 @@
   position: absolute;
 }
 
+.lang-selection {
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+}
+
 .offer-card {
   z-index: 2;
   padding: 30px 30px;
