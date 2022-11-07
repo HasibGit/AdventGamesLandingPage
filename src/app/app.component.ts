@@ -26,6 +26,20 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentEnvironment: string;
   brandLogoPath: string;
   offerDetails: string;
+  languages: { key: string; value: string }[] = [
+    {
+      key: 'en-EN',
+      value: 'English',
+    },
+    {
+      key: 'fr-FR',
+      value: 'French',
+    },
+    {
+      key: 'de-DE',
+      value: 'German',
+    },
+  ];
 
   constructor(
     private renderer: Renderer2,
@@ -43,6 +57,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.setBubblesBackgroundColor();
+  }
+
+  selectLang(language: { key: string; value: string }) {
+    console.log(language);
   }
 
   setTabTitle() {

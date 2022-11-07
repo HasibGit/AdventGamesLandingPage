@@ -55,9 +55,9 @@
 
   <div fxLayout="column" fxLayoutAlign="center center" class="lang-selection">
     <mat-chip-list aria-label="lang selection">
-      <mat-chip>English</mat-chip>
-      <mat-chip>French</mat-chip>
-      <mat-chip>German</mat-chip>
+      <div *ngFor="let language of languages">
+        <mat-chip (click)="selectLang(language)">{{language.value}}</mat-chip>
+      </div>
     </mat-chip-list>
   </div>
 
