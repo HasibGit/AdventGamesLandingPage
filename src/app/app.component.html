@@ -59,7 +59,7 @@
     <img src="../assets/images/Pizza.png" alt="" class="pizza-img" *ngIf="currentEnvironment == 'SPIGA'">
     <section class="top-section mt-24" fxLayout="column" fxLayoutAlign="center center">
       <img src="{{brandLogoPath}}" alt="" class="brand-logo mb-20"
-        [ngClass]="{'SPIGA': 'brand-logo', 'EMIL': 'andiamo-brand-logo', 'ANDIAMO': 'andiamo-brand-logo', 'SV_RESTAURANT': 'brand-logo'}[currentEnvironment]">
+        [ngClass]="{'SPIGA': 'brand-logo', 'EMIL': 'andiamo-brand-logo', 'ANDIAMO': 'andiamo-brand-logo', 'SV_RESTAURANT': 'andiamo-brand-logo'}[currentEnvironment]">
       <h3 class="mb-24"
         [ngClass]="{'SPIGA': 'christmas-deadline spiga-christmas-deadline-color spiga-font', 'EMIL': 'emil-christmas-deadline emil-christmas-deadline-color emil-font', 'ANDIAMO': 'christmas-deadline andiamo-christmas-deadline-color andiamo-sv-font', 'SV_RESTAURANT': 'christmas-deadline andiamo-christmas-deadline-color andiamo-sv-font'}[currentEnvironment]">
         {{daysTillChristmasStarts}} days till Christmas!</h3>
@@ -97,7 +97,7 @@
 
       <button class="play-game-btn"
         [ngClass]="{'SPIGA': 'spiga-play-button-border-color spiga-play-button-background-color spiga-font', 'EMIL': 'emil-play-button-border-color emil-play-button-background-color emil-font', 'ANDIAMO': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font', 'SV_RESTAURANT': 'andiamo-play-button-border-color andiamo-play-button-background-color andiamo-font'}[currentEnvironment]"><span
-          [ngClass]="{'SPIGA': 'button-text', 'EMIL': 'emil-button-text', 'ANDIAMO': 'andiamo-button-text', 'SV_RESTAURANT': 'button-text'}[currentEnvironment]"
+          [ngClass]="{'SPIGA': 'button-text', 'EMIL': 'emil-button-text', 'ANDIAMO': 'andiamo-button-text', 'SV_RESTAURANT': 'andiamo-button-text'}[currentEnvironment]"
           (click)="openGameInNewTab()">Play
           Game</span></button>
     </section>

@@ -31,7 +31,21 @@ export class AppComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private elemRef: ElementRef,
     private titleService: Title
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.currentEnvironment = environment.environmentName;
+    this.setTabTitle();
+    this.setEnvironmentSpecificConfigs();
+    this.getDaysTillChristmas();
+    this.getSecondsLeftTillNextOffer();
+  }
+
+  ngAfterViewInit(): void {
+    this.setBubblesBackgroundColor();
+  }
+
+  setTabTitle() {
     switch (this.currentEnvironment) {
       case 'DEV':
         this.titleService.setTitle('Spiga');
@@ -51,17 +65,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       default:
         this.titleService.setTitle('Spiga');
     }
-  }
-
-  ngOnInit() {
-    this.currentEnvironment = environment.environmentName;
-    this.setEnvironmentSpecificConfigs();
-    this.getDaysTillChristmas();
-    this.getSecondsLeftTillNextOffer();
-  }
-
-  ngAfterViewInit(): void {
-    this.setBubblesBackgroundColor();
   }
 
   setBubblesBackgroundColor() {
