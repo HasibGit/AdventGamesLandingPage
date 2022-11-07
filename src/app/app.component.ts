@@ -12,6 +12,7 @@ import { emilConfig } from '../Landing_Page_Configs/Emil_Landing_Page_Config/emi
 import { andiamoConfig } from '../Landing_Page_Configs/Andiamo_Landing_Page_Config/andiamo-config';
 import { svConfig } from '../Landing_Page_Configs/SV_Restaurant_Landing_Page_Config/sv-config';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +45,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private renderer: Renderer2,
     private elemRef: ElementRef,
-    private titleService: Title
+    private titleService: Title,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -60,7 +62,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   selectLang(language: { key: string; value: string }) {
-    console.log(language);
+    this.translateService.use(language.key);
   }
 
   setTabTitle() {
@@ -171,6 +173,25 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.daysTillChristmasStarts = Math.ceil(
       (christmasStartDate.getTime() - today.getTime()) / (1000 * 3600 * 24)
     );
+  }
+
+  getOfferKey(): string {
+    let offerKey = '';
+    switch (this.currentEnvironment) {
+      case 'SPIGA':
+        offerKey = 'SPIGA_OFFER_DETAILS';
+        break;
+      case 'EMIL':
+        offerKey = 'EMIL_OFFER_DETAILS';
+        break;
+      case 'ANDIAMO':
+        offerKey = 'ANDIAMO_OFFER_DETAILS';
+        break;
+      case 'SV_RESTAURANT':
+        offerKey = 'SV_RESTAURANT_OFFER_DETAILS';
+        break;
+    }
+    return offerKey;
   }
 
   getSecondsLeftTillNextOffer() {

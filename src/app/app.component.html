@@ -71,12 +71,12 @@
         [ngClass]="{'SPIGA': 'brand-logo', 'EMIL': 'andiamo-brand-logo', 'ANDIAMO': 'andiamo-brand-logo', 'SV_RESTAURANT': 'andiamo-brand-logo'}[currentEnvironment]">
       <h3 class="mb-24"
         [ngClass]="{'SPIGA': 'christmas-deadline spiga-christmas-deadline-color spiga-font', 'EMIL': 'emil-christmas-deadline emil-christmas-deadline-color emil-font', 'ANDIAMO': 'christmas-deadline andiamo-christmas-deadline-color andiamo-sv-font', 'SV_RESTAURANT': 'christmas-deadline andiamo-christmas-deadline-color andiamo-sv-font'}[currentEnvironment]">
-        {{daysTillChristmasStarts}} days till Christmas!</h3>
+        {{daysTillChristmasStarts + ('CHRISTMAS_DEADLINE' | translate)}}</h3>
 
       <section class="offer-description mb-24">
         <p
           [ngClass]="{'SPIGA': 'offer-details spiga-font', 'EMIL': 'emil-offer-details emil-font', 'ANDIAMO': ' andiamo-offer-details andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-offer-details andiamo-sv-font'}[currentEnvironment]">
-          {{offerDetails}}</p>
+          {{getOfferKey() | translate}}</p>
       </section>
     </section>
 
