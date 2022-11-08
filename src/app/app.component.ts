@@ -28,6 +28,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentlySelectedLanguage: string = 'de-DE';
   brandLogoPath: string;
   offerDetails: string;
+  hoursTranslated: string;
+  minutesTranslated: string;
+  secondsTranslated: string;
   languages: { key: string; value: string }[] = [
     {
       key: 'en-US',
@@ -51,6 +54,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.hoursTranslated = 'Stunden';
+    this.minutesTranslated = 'Minuten';
+    this.secondsTranslated = 'Sekunden';
+
     this.currentEnvironment = environment.environmentName;
     this.setTabTitle();
     this.setEnvironmentSpecificConfigs();
@@ -64,7 +71,29 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   selectLang(language: { key: string; value: string }) {
     this.currentlySelectedLanguage = language.key;
+    this.setCountdownTimerTranslation(this.currentlySelectedLanguage);
     this.translateService.use(language.key);
+  }
+
+  setCountdownTimerTranslation(currentLanguage: string) {
+    switch (currentLanguage) {
+      case 'de-DE':
+        this.hoursTranslated = 'Stunden';
+        this.minutesTranslated = 'Minuten';
+        this.secondsTranslated = 'Sekunden';
+        break;
+      case 'en-US':
+        this.hoursTranslated = 'hours';
+        this.minutesTranslated = 'minutes';
+        this.secondsTranslated = 'seconds';
+        break;
+      case 'fr-FR':
+        this.hoursTranslated = 'heures';
+        this.minutesTranslated = 'minutes';
+        this.secondsTranslated = 'secondes';
+        break;
+    }
+    this.getSecondsLeftTillNextOffer();
   }
 
   setTabTitle() {
@@ -215,27 +244,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     // 1. Seperate string between spaces
     const splittedText = text.split(/(\s+)/);
 
-    // const hours = '<span>' + splittedText[0] + ' hours : </span>';
-    // const minutes = '<span>' + splittedText[2] + ' minutes : </span>';
-    // const seconds = '<span>' + splittedText[4] + ' seconds </span>';
-
-    let hours = '';
-    let minutes = '';
-    let seconds = '';
-
-    if (this.currentlySelectedLanguage == 'de-DE') {
-      hours = '<span>' + splittedText[0] + ' Stunden : </span>';
-      minutes = '<span>' + splittedText[2] + ' Minuten : </span>';
-      seconds = '<span>' + splittedText[4] + ' Sekunden </span>';
-    } else if (this.currentlySelectedLanguage == 'en-US') {
-      hours = '<span>' + splittedText[0] + ' hours : </span>';
-      minutes = '<span>' + splittedText[2] + ' minutes : </span>';
-      seconds = '<span>' + splittedText[4] + ' seconds </span>';
-    } else if (this.currentlySelectedLanguage == 'fr-FR') {
-      hours = '<span>' + splittedText[0] + ' heures : </span>';
-      minutes = '<span>' + splittedText[2] + ' minutes : </span>';
-      seconds = '<span>' + splittedText[4] + ' secondes </span>';
-    }
+    const hours =
+      '<span>' + splittedText[0] + ' ' + this.hoursTranslated + ' : </span>';
+    const minutes =
+      '<span>' + splittedText[2] + ' ' + this.minutesTranslated + ' : </span>';
+    const seconds =
+      '<span>' + splittedText[4] + ' ' + this.secondsTranslated + '</span>';
 
     return hours + minutes + seconds;
   }
