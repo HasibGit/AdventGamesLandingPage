@@ -56,7 +56,9 @@
   <div fxLayout="column" fxLayoutAlign="center center" class="lang-selection">
     <mat-chip-list aria-label="lang selection">
       <div *ngFor="let language of languages">
-        <mat-chip (click)="selectLang(language)">{{language.value}}</mat-chip>
+        <mat-chip (click)="selectLang(language)"><span
+            [ngClass]="{'SPIGA': 'spiga-font', 'EMIL': 'emil-font', 'ANDIAMO': 'andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-sv-font'}[currentEnvironment]">{{language.value}}</span>
+        </mat-chip>
       </div>
     </mat-chip-list>
   </div>
@@ -88,14 +90,14 @@
           [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">100</span>
         points to win</h2> -->
 
-      <h2 class="mb-5"
+      <h2 class="text-center mb-5"
         [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
         <span>{{'SPIGA_WINNING_CRITERIA_LEFT' | translate}}</span>
         <span
           [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">200</span>
         <span>{{'SPIGA_WINNING_CRITERIA_RIGHT' | translate}}</span>
       </h2>
-      <h1 class="offer-text mb-24"
+      <h1 class="text-center mb-24"
         [ngClass]="{'SPIGA': 'offer spiga-offer-color spiga-font', 'EMIL': 'emil-offer emil-offer-color emil-font', 'ANDIAMO': 'offer andiamo-offer-color andiamo-sv-font', 'SV_RESTAURANT': 'offer andiamo-offer-color andiamo-sv-font'}[currentEnvironment]">
         {{'SPIGA_OFFERS.DAY_1' | translate}}
       </h1>
