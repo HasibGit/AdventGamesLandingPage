@@ -27,7 +27,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentEnvironment: string;
   currentlySelectedLanguage: string = 'de-DE';
   brandLogoPath: string;
-  offerDetails: string;
   hoursTranslated: string;
   minutesTranslated: string;
   secondsTranslated: string;
@@ -185,16 +184,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   setEnvironmentSpecificConfigs() {
     if (this.currentEnvironment == 'SPIGA') {
       this.brandLogoPath = spigaConfig.brandLogoPath;
-      this.offerDetails = spigaConfig.spigaOfferDetails;
     } else if (this.currentEnvironment == 'EMIL') {
       this.brandLogoPath = emilConfig.brandLogoPath;
-      this.offerDetails = emilConfig.emilOfferDetails;
     } else if (this.currentEnvironment == 'ANDIAMO') {
       this.brandLogoPath = andiamoConfig.brandLogoPath;
-      this.offerDetails = andiamoConfig.andiamoOfferDetails;
     } else if (this.currentEnvironment == 'SV_RESTAURANT') {
       this.brandLogoPath = svConfig.brandLogoPath;
-      this.offerDetails = svConfig.svOfferDetails;
     }
   }
 
