@@ -104,7 +104,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     return {
       gameId: gameid,
       date: currentDate,
-      lang: this.currentlySelectedLanguage,
+      lang: this.currentlySelectedLanguage.slice(0, 2),
     };
   }
 
@@ -115,11 +115,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.appservice
       .getWinningCriteriaAndPrize(payload.gameId, payload.date, payload.lang)
       .subscribe((response: PrizeAndWinningCriteria) => {
-        if (!response.isSuccess) {
-          console.log('Error occured');
-          this.isLoading = false;
-          return;
-        }
         if (response.errors && response.errors.errors) {
           this.offer_error = response.errors.errors[0];
           this.isLoading = false;

@@ -1,15 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpEventType,
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 
 @Injectable({
