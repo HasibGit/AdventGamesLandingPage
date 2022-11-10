@@ -92,7 +92,14 @@
         points to win</h2> -->
 
       <h2 class="text-center mb-5"
-        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
+        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]"
+        *ngIf="!isLoading && offer_error && offer_error.length > 0">
+        {{offer_error}}
+      </h2>
+
+      <h2 class="text-center mb-5"
+        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]"
+        *ngIf="!isLoading">
         <!-- <span>{{'SPIGA_WINNING_CRITERIA_LEFT' | translate}}</span>
         <span
           [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">200</span>
@@ -103,7 +110,8 @@
           translate}}</span>
       </h2>
       <h1 class="text-center mb-24"
-        [ngClass]="{'SPIGA': 'offer spiga-offer-color spiga-font', 'EMIL': 'emil-offer emil-offer-color emil-font', 'ANDIAMO': 'offer andiamo-offer-color andiamo-sv-font', 'SV_RESTAURANT': 'offer andiamo-offer-color andiamo-sv-font'}[currentEnvironment]">
+        [ngClass]="{'SPIGA': 'offer spiga-offer-color spiga-font', 'EMIL': 'emil-offer emil-offer-color emil-font', 'ANDIAMO': 'offer andiamo-offer-color andiamo-sv-font', 'SV_RESTAURANT': 'offer andiamo-offer-color andiamo-sv-font'}[currentEnvironment]"
+        *ngIf="!isLoading">
         {{currentlySelectedLanguage == 'en-US' ? prizeAndWinningCriteria.offer_en : (currentlySelectedLanguage ==
         'de-DE' ? prizeAndWinningCriteria.offer_de : prizeAndWinningCriteria.offer_fr) | translate}}
       </h1>

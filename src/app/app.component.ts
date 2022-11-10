@@ -55,6 +55,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       value: 'German',
     },
   ];
+  isLoading: boolean;
 
   constructor(
     private renderer: Renderer2,
@@ -65,6 +66,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.hoursTranslated = 'Stunden';
     this.minutesTranslated = 'Minuten';
     this.secondsTranslated = 'Sekunden';
@@ -83,14 +85,31 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   generatePayload() {
+    let gameid: string = '';
+    let currentDate = new Date().getDate();
+    if (this.currentEnvironment != 'SV_RESTAURANT') {
+      gameid = 'space-shooter';
+    } else {
+      if (currentDate >= 1 && currentDate <= 5) {
+        gameid = 'hungry-worm';
+      } else if (currentDate >= 6 && currentDate <= 12) {
+        gameid = 'sky-racer';
+      } else if (currentDate >= 13 && currentDate <= 19) {
+        gameid = 'candy-craze';
+      } else if (currentDate >= 20 && currentDate <= 24) {
+        gameid = 'memory-match';
+      }
+    }
+
     return {
-      gameId: 'space-shooter',
-      date: new Date().getDate(),
+      gameId: gameid,
+      date: currentDate,
       lang: this.currentlySelectedLanguage,
     };
   }
 
   getWinningCriteriaAndPrice() {
+    this.isLoading = true;
     let payload: { gameId: string; date: number; lang: string } =
       this.generatePayload();
     this.appservice
@@ -98,10 +117,12 @@ export class AppComponent implements OnInit, AfterViewInit {
       .subscribe((response: PrizeAndWinningCriteria) => {
         if (!response.isSuccess) {
           console.log('Error occured');
+          this.isLoading = false;
           return;
         }
         if (response.errors && response.errors.errors) {
           this.offer_error = response.errors.errors[0];
+          this.isLoading = false;
           return;
         }
 
@@ -118,6 +139,8 @@ export class AppComponent implements OnInit, AfterViewInit {
           response.result.prizeWinningCriteria.WinningCriteriaDescriptions[1].value;
         this.prizeAndWinningCriteria.winning_criteria_fr =
           response.result.prizeWinningCriteria.WinningCriteriaDescriptions[2].value;
+
+        this.isLoading = false;
       });
   }
 
