@@ -15,7 +15,7 @@ export class AppService {
       .set('culture', language);
 
     return this.http.get<PrizeAndWinningCriteria>(
-      'https://localhost:7238/api/Query/GetGamePrize',
+      'https://selise-advent-games.seliselocal.com/api/Query/GetGamePrize',
       {
         headers: new HttpHeaders({
           accept: 'application/json',
