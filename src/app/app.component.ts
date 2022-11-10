@@ -13,6 +13,7 @@ import { andiamoConfig } from '../Landing_Page_Configs/Andiamo_Landing_Page_Conf
 import { svConfig } from '../Landing_Page_Configs/SV_Restaurant_Landing_Page_Config/sv-config';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -49,7 +50,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private elemRef: ElementRef,
     private titleService: Title,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private appservice: AppService
   ) {}
 
   ngOnInit() {
@@ -62,10 +64,21 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.setEnvironmentSpecificConfigs();
     this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
+
+    this.getWinningCriteriaAndPrice();
   }
 
   ngAfterViewInit(): void {
     this.setBubblesBackgroundColor();
+  }
+
+  getWinningCriteriaAndPrice() {
+    this.appservice
+      .getWinningCriteriaAndPrize('space-shooter', 1, 'en')
+      .subscribe((res: any) => {
+        console.log('Prize details');
+        console.log(res);
+      });
   }
 
   selectLang(language: { key: string; value: string }) {
