@@ -27,7 +27,7 @@ export class AppService {
       'https://selise-space-shooter-backend.seliselocal.com/api/Query/GetGamePrize',
       {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+          accept: 'application/json',
         }),
         params: httpParams,
         responseType: 'json',
