@@ -5,7 +5,7 @@ export interface description {
 
 export interface PrizeAndWinningCriteria {
   errors: {
-    errors: [];
+    errors: string[];
   };
   result: {
     gameId: string;

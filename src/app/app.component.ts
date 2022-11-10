@@ -32,6 +32,15 @@ export class AppComponent implements OnInit, AfterViewInit {
   hoursTranslated: string;
   minutesTranslated: string;
   secondsTranslated: string;
+  prizeAndWinningCriteria: {
+    offer_en: string;
+    offer_de: string;
+    offer_fr: string;
+    winning_criteria_en: string;
+    winning_criteria_de: string;
+    winning_criteria_fr: string;
+  };
+  offer_error: string;
   languages: { key: string; value: string }[] = [
     {
       key: 'en-US',
@@ -73,10 +82,43 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.setBubblesBackgroundColor();
   }
 
+  generatePayload() {
+    return {
+      gameId: 'space-shooter',
+      date: new Date().getDate(),
+      lang: this.currentlySelectedLanguage,
+    };
+  }
+
   getWinningCriteriaAndPrice() {
+    let payload: { gameId: string; date: number; lang: string } =
+      this.generatePayload();
     this.appservice
-      .getWinningCriteriaAndPrize('space-shooter', 1, 'en')
-      .subscribe((response: PrizeAndWinningCriteria) => {});
+      .getWinningCriteriaAndPrize(payload.gameId, payload.date, payload.lang)
+      .subscribe((response: PrizeAndWinningCriteria) => {
+        if (!response.isSuccess) {
+          console.log('Error occured');
+          return;
+        }
+        if (response.errors && response.errors.errors) {
+          this.offer_error = response.errors.errors[0];
+          return;
+        }
+
+        this.prizeAndWinningCriteria.offer_en =
+          response.result.descriptions[0].value;
+        this.prizeAndWinningCriteria.offer_de =
+          response.result.descriptions[1].value;
+        this.prizeAndWinningCriteria.offer_fr =
+          response.result.descriptions[2].value;
+
+        this.prizeAndWinningCriteria.winning_criteria_en =
+          response.result.prizeWinningCriteria.WinningCriteriaDescriptions[0].value;
+        this.prizeAndWinningCriteria.winning_criteria_de =
+          response.result.prizeWinningCriteria.WinningCriteriaDescriptions[1].value;
+        this.prizeAndWinningCriteria.winning_criteria_fr =
+          response.result.prizeWinningCriteria.WinningCriteriaDescriptions[2].value;
+      });
   }
 
   selectLang(language: { key: string; value: string }) {
