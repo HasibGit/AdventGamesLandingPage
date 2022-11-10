@@ -39,6 +39,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     winning_criteria_en: string;
     winning_criteria_de: string;
     winning_criteria_fr: string;
+  } = {
+    offer_de: '',
+    offer_en: '',
+    offer_fr: '',
+    winning_criteria_en: '',
+    winning_criteria_de: '',
+    winning_criteria_fr: '',
   };
   offer_error: string;
   languages: { key: string; value: string }[] = [
@@ -76,7 +83,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.setEnvironmentSpecificConfigs();
     this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
-
     this.getWinningCriteriaAndPrice();
   }
 
@@ -115,7 +121,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.appservice
       .getWinningCriteriaAndPrize(payload.gameId, payload.date, payload.lang)
       .subscribe((response: PrizeAndWinningCriteria) => {
-        if (response.errors && response.errors.errors) {
+        console.log(response);
+
+        if (
+          response.errors &&
+          response.errors.errors &&
+          response.errors.errors.length > 0
+        ) {
           this.offer_error = response.errors.errors[0];
           this.isLoading = false;
           return;
@@ -129,11 +141,13 @@ export class AppComponent implements OnInit, AfterViewInit {
           response.result.descriptions[2].value;
 
         this.prizeAndWinningCriteria.winning_criteria_en =
-          response.result.prizeWinningCriteria.WinningCriteriaDescriptions[0].value;
+          response.result.prizeWinningCriteria.winningCriteriaDescriptions[0].value;
         this.prizeAndWinningCriteria.winning_criteria_de =
-          response.result.prizeWinningCriteria.WinningCriteriaDescriptions[1].value;
+          response.result.prizeWinningCriteria.winningCriteriaDescriptions[1].value;
         this.prizeAndWinningCriteria.winning_criteria_fr =
-          response.result.prizeWinningCriteria.WinningCriteriaDescriptions[2].value;
+          response.result.prizeWinningCriteria.winningCriteriaDescriptions[2].value;
+
+        console.log(this.prizeAndWinningCriteria);
 
         this.isLoading = false;
       });

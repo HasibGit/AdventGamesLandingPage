@@ -15,7 +15,7 @@ export interface PrizeAndWinningCriteria {
     prizeWinningCriteria: {
       criteriaType: number;
       scoreThreshold: number;
-      WinningCriteriaDescriptions: description[];
+      winningCriteriaDescriptions: description[];
       congratulationDescriptions: description[];
     };
     id: string;
