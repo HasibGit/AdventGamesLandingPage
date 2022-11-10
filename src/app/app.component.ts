@@ -14,6 +14,7 @@ import { svConfig } from '../Landing_Page_Configs/SV_Restaurant_Landing_Page_Con
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from './app.service';
+import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 
 @Component({
   selector: 'app-root',
@@ -75,10 +76,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   getWinningCriteriaAndPrice() {
     this.appservice
       .getWinningCriteriaAndPrize('space-shooter', 1, 'en')
-      .subscribe((res: any) => {
-        console.log('Prize details');
-        console.log(res);
-      });
+      .subscribe((response: PrizeAndWinningCriteria) => {});
   }
 
   selectLang(language: { key: string; value: string }) {
