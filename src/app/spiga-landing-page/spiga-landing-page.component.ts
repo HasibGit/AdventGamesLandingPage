@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./spiga-landing-page.component.scss'],
 })
 export class SpigaLandingPageComponent implements OnInit, AfterViewInit {
-  title = 'space-shooter-landing-page';
   secondsLeft: number = 0;
   config: CountdownConfig;
   daysTillChristmasStarts: number;

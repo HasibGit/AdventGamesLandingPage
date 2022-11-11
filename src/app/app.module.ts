@@ -42,6 +42,26 @@ if (environment.environmentName == 'SPIGA') {
       component: SpigaLandingPageComponent,
     }
   );
+} else if (environment.environmentName == 'EMIL') {
+  appRoutes.push(
+    {
+      path: '',
+      redirectTo: 'de',
+      pathMatch: 'full',
+    },
+    {
+      path: 'de',
+      component: EmilLandingPageComponent,
+    },
+    {
+      path: 'en',
+      component: EmilLandingPageComponent,
+    },
+    {
+      path: 'fr',
+      component: EmilLandingPageComponent,
+    }
+  );
 }
 
 @NgModule({
