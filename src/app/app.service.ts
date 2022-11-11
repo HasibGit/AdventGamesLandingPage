@@ -10,7 +10,6 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   getWinningCriteriaAndPrize(gameId: string, day: number, language: string) {
-    console.log(environment);
     let httpParams = new HttpParams()
       .set('gameId', gameId)
       .set('day', day)

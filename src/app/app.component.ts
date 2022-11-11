@@ -74,9 +74,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.hoursTranslated = 'Stunden';
-    this.minutesTranslated = 'Minuten';
-    this.secondsTranslated = 'Sekunden';
+    this.hoursTranslated = 'Std.';
+    this.minutesTranslated = 'min';
+    this.secondsTranslated = 'sek.';
 
     this.currentEnvironment = environment.environmentName;
     this.setTabTitle();
@@ -121,8 +121,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.appservice
       .getWinningCriteriaAndPrize(payload.gameId, payload.date, payload.lang)
       .subscribe((response: PrizeAndWinningCriteria) => {
-        console.log(response);
-
         if (
           response.errors &&
           response.errors.errors &&
@@ -147,8 +145,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.prizeAndWinningCriteria.winning_criteria_fr =
           response.result.prizeWinningCriteria.winningCriteriaDescriptions[2].value;
 
-        console.log(this.prizeAndWinningCriteria);
-
         this.isLoading = false;
       });
   }
@@ -162,19 +158,19 @@ export class AppComponent implements OnInit, AfterViewInit {
   setCountdownTimerTranslation(currentLanguage: string) {
     switch (currentLanguage) {
       case 'de-DE':
-        this.hoursTranslated = 'Stunden';
-        this.minutesTranslated = 'Minuten';
-        this.secondsTranslated = 'Sekunden';
+        this.hoursTranslated = 'Std.';
+        this.minutesTranslated = 'min';
+        this.secondsTranslated = 'sek.';
         break;
       case 'en-US':
-        this.hoursTranslated = 'hours';
-        this.minutesTranslated = 'minutes';
-        this.secondsTranslated = 'seconds';
+        this.hoursTranslated = 'h';
+        this.minutesTranslated = 'min';
+        this.secondsTranslated = 'sec';
         break;
       case 'fr-FR':
-        this.hoursTranslated = 'heures';
-        this.minutesTranslated = 'minutes';
-        this.secondsTranslated = 'secondes';
+        this.hoursTranslated = 'h';
+        this.minutesTranslated = 'min';
+        this.secondsTranslated = 'sec';
         break;
     }
     this.getSecondsLeftTillNextOffer();

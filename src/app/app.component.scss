@@ -97,7 +97,7 @@
 
 .snow-img {
   position: absolute;
-  margin-top: -60px;
+  margin-top: -65px;
   width: 105%;
   z-index: 3;
 }
@@ -345,18 +345,24 @@
 
 @media only screen and (max-width: 500px) {
   .snow-img {
-    margin-top: -52px;
+    margin-top: -55px;
   }
 }
 
 @media only screen and (width: 540px) and (height: 720px) {
   .snow-img {
-    margin-top: -60px;
+    margin-top: -62px;
   }
 }
 
 @media only screen and (width: 1024px) and (height: 600px) {
   .snow-img {
-    margin-top: -82px;
+    margin-top: -96px;
+  }
+}
+
+@media only screen and (width: 912px) and (height: 1368px) {
+  .snow-img {
+    margin-top: -90px;
   }
 }

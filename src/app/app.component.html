@@ -68,7 +68,7 @@
     [ngClass]="{'SPIGA': 'spiga-card-background-color spiga-card-border', 'EMIL': 'emil-card-background-color emil-card-border', 'ANDIAMO': 'andiamo-card-background-color andiamo-card-border', 'SV_RESTAURANT': 'andiamo-card-background-color andiamo-card-border'}[currentEnvironment]">
     <img src="../assets/images/long snow.svg" alt="" class="snow-img">
     <img src="../assets/images/Pizza.png" alt="" class="pizza-img" *ngIf="currentEnvironment == 'SPIGA'">
-    <section class="top-section" [ngClass]="{'mt-24': (currentEnvironment == 'SPIGA' || currentEnvironment == 'EMIL')}"
+    <section class="top-section" [ngClass]="{'mt-12': (currentEnvironment == 'SPIGA' || currentEnvironment == 'EMIL')}"
       fxLayout="column" fxLayoutAlign="center center">
       <img src="{{brandLogoPath}}" alt="" class="brand-logo mb-20"
         [ngClass]="{'SPIGA': 'brand-logo', 'EMIL': 'andiamo-brand-logo', 'ANDIAMO': 'andiamo-brand-logo', 'SV_RESTAURANT': 'andiamo-brand-logo'}[currentEnvironment]">
