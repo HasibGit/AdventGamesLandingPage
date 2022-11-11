@@ -15,6 +15,7 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from './app.service';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -77,7 +78,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private elemRef: ElementRef,
     private titleService: Title,
     private translateService: TranslateService,
-    private appservice: AppService
+    private appservice: AppService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -222,6 +224,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.currentlySelectedLanguage = language.key;
     this.setCountdownTimerTranslation(this.currentlySelectedLanguage);
     this.translateService.use(language.key);
+
+    if (this.currentlySelectedLanguage == 'en-US') {
+      this.router.navigate(['/en']);
+    } else if (this.currentlySelectedLanguage == 'de-DE') {
+      this.router.navigate(['/de']);
+    } else {
+      this.router.navigate(['/fr']);
+    }
   }
 
   setCountdownTimerTranslation(currentLanguage: string) {

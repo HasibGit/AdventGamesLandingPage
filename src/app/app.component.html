@@ -56,7 +56,8 @@
   <div fxLayout="column" fxLayoutAlign="center center" class="lang-selection">
     <mat-chip-list aria-label="lang selection">
       <div *ngFor="let language of languages">
-        <mat-chip (click)="selectLang(language)"><span
+        <mat-chip (click)="selectLang(language)">
+          <span
             [ngClass]="{'SPIGA': 'spiga-font', 'EMIL': 'emil-font', 'ANDIAMO': 'andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-sv-font'}[currentEnvironment]">{{language.value}}</span>
         </mat-chip>
       </div>

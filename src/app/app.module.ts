@@ -9,16 +9,38 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { Routes, RouterModule } from '@angular/router';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'de',
+    pathMatch: 'full',
+  },
+  {
+    path: 'de',
+    component: AppComponent,
+  },
+  {
+    path: 'en',
+    component: AppComponent,
+  },
+  {
+    path: 'fr',
+    component: AppComponent,
+  },
+];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
     FlexLayoutModule,
     CountdownModule,
     MatChipsModule,
