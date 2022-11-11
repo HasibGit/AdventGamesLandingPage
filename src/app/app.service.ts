@@ -18,7 +18,7 @@ export class AppService {
       'https://selise-advent-games.seliselocal.com/api/Query/GetGamePrize',
       {
         headers: new HttpHeaders({
-          accept: 'application/json',
+          'Content-Type': 'application/json',
         }),
         params: httpParams,
         responseType: 'json',
