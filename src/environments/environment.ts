@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   environmentName: 'SPIGA',
+  baseUrl: 'https://localhost:7238/',
   gameUrl: 'https://selise-space-shooter.seliselocal.com/',
 };
 
