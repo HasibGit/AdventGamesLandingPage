@@ -62,6 +62,46 @@ if (environment.environmentName == 'SPIGA') {
       component: EmilLandingPageComponent,
     }
   );
+} else if (environment.environmentName == 'ANDIAMO') {
+  appRoutes.push(
+    {
+      path: '',
+      redirectTo: 'de',
+      pathMatch: 'full',
+    },
+    {
+      path: 'de',
+      component: AndiamoLandingPageComponent,
+    },
+    {
+      path: 'en',
+      component: AndiamoLandingPageComponent,
+    },
+    {
+      path: 'fr',
+      component: AndiamoLandingPageComponent,
+    }
+  );
+} else if (environment.environmentName == 'SV_RESTAURANT') {
+  appRoutes.push(
+    {
+      path: '',
+      redirectTo: 'de',
+      pathMatch: 'full',
+    },
+    {
+      path: 'de',
+      component: SvRestaurantLandingPageComponent,
+    },
+    {
+      path: 'en',
+      component: SvRestaurantLandingPageComponent,
+    },
+    {
+      path: 'fr',
+      component: SvRestaurantLandingPageComponent,
+    }
+  );
 }
 
 @NgModule({

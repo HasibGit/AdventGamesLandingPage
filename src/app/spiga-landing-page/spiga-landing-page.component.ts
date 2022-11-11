@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../app.service';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-spiga-landing-page',
@@ -73,7 +74,8 @@ export class SpigaLandingPageComponent implements OnInit, AfterViewInit {
     private titleService: Title,
     private translateService: TranslateService,
     private appservice: AppService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -205,11 +207,11 @@ export class SpigaLandingPageComponent implements OnInit, AfterViewInit {
     this.translateService.use(language.key);
 
     if (this.currentlySelectedLanguage == 'en-US') {
-      this.router.navigate(['/en']);
+      this.location.replaceState('/en');
     } else if (this.currentlySelectedLanguage == 'de-DE') {
-      this.router.navigate(['/de']);
+      this.location.replaceState('/de');
     } else {
-      this.router.navigate(['/fr']);
+      this.location.replaceState('/fr');
     }
   }
 
