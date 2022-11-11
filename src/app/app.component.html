@@ -84,12 +84,6 @@
     </section>
 
     <section class="bottom-section" fxLayout="column" fxLayoutAlign="center center">
-      <!-- <h2 class="mb-5"
-        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
-        Get
-        more than <span
-          [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">100</span>
-        points to win</h2> -->
 
       <ng-container *ngIf="isLoading">
         <mat-progress-bar mode="indeterminate" class="loader"></mat-progress-bar>
@@ -101,9 +95,23 @@
         {{offer_error}}
       </h2>
 
+      <h2 *ngIf="!isLoading && winningCriteriaContainsNumber" class="text-center mb-5"
+        [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]">
+        <span>{{currentlySelectedLanguage == 'en-US' ? winningCriteriaLeft_en :
+          (currentlySelectedLanguage ==
+          'de-DE' ? winningCriteriaLeft_de : winningCriteriaLeft_fr) |
+          translate}}</span>
+        <span
+          [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">{{winningCriteriaThreshold}}</span>
+        <span>{{currentlySelectedLanguage == 'en-US' ? winningCriteriaRight_en :
+          (currentlySelectedLanguage ==
+          'de-DE' ? winningCriteriaRight_de : winningCriteriaRight_fr) |
+          translate}}</span>
+      </h2>
+
       <h2 class="text-center mb-5"
         [ngClass]="{'SPIGA': 'winning-criteria spiga-font', 'EMIL': 'emil-winning-criteria emil-font', 'ANDIAMO': 'andiamo-winning-criteria andiamo-sv-font', 'SV_RESTAURANT': 'andiamo-winning-criteria andiamo-sv-font'}[currentEnvironment]"
-        *ngIf="!isLoading">
+        *ngIf="!isLoading && !winningCriteriaContainsNumber">
         <!-- <span>{{'SPIGA_WINNING_CRITERIA_LEFT' | translate}}</span>
         <span
           [ngClass]="{'SPIGA': 'spiga-required-points-color', 'EMIL': 'emil-required-points-color', 'ANDIAMO': 'andiamo-required-points-color', 'SV_RESTAURANT': 'andiamo-required-points-color'}[currentEnvironment]">200</span>

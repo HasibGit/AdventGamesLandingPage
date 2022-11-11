@@ -32,6 +32,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   hoursTranslated: string;
   minutesTranslated: string;
   secondsTranslated: string;
+  winningCriteriaContainsNumber: boolean = false;
+  winningCriteriaThreshold: number;
+  winningCriteriaLeft_en: string = '';
+  winningCriteriaLeft_de: string = '';
+  winningCriteriaLeft_fr: string = '';
+  winningCriteriaRight_en: string = '';
+  winningCriteriaRight_de: string = '';
+  winningCriteriaRight_fr: string = '';
   prizeAndWinningCriteria: {
     offer_en: string;
     offer_de: string;
@@ -145,8 +153,69 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.prizeAndWinningCriteria.winning_criteria_fr =
           response.result.prizeWinningCriteria.winningCriteriaDescriptions[2].value;
 
+        this.handleWinningCriteriaStyle();
+
         this.isLoading = false;
       });
+  }
+
+  handleWinningCriteriaStyle() {
+    const arr_en: string[] =
+      this.prizeAndWinningCriteria.winning_criteria_en.split(' ');
+    const arr_de: string[] =
+      this.prizeAndWinningCriteria.winning_criteria_de.split(' ');
+    const arr_fr: string[] =
+      this.prizeAndWinningCriteria.winning_criteria_fr.split(' ');
+
+    let arr_en_number_index = -1;
+    let arr_de_number_index = -1;
+    let arr_fr_number_index = -1;
+
+    for (let i = 0; i < arr_en.length; i++) {
+      if (!isNaN(parseInt(arr_en[i]))) {
+        this.winningCriteriaContainsNumber = true;
+        arr_en_number_index = i;
+        this.winningCriteriaThreshold = parseInt(arr_en[i]);
+        break;
+      }
+    }
+
+    if (this.winningCriteriaContainsNumber) {
+      for (let i = 0; i < arr_de.length; i++) {
+        if (!isNaN(parseInt(arr_de[i]))) {
+          arr_de_number_index = i;
+          break;
+        }
+      }
+
+      for (let i = 0; i < arr_fr.length; i++) {
+        if (!isNaN(parseInt(arr_fr[i]))) {
+          arr_fr_number_index = i;
+          break;
+        }
+      }
+
+      for (let i = 0; i < arr_en_number_index; i++) {
+        this.winningCriteriaLeft_en += arr_en[i] + ' ';
+      }
+      for (let i = arr_en_number_index + 1; i < arr_en.length; i++) {
+        this.winningCriteriaRight_en += ' ' + arr_en[i];
+      }
+
+      for (let i = 0; i < arr_de_number_index; i++) {
+        this.winningCriteriaLeft_de += arr_de[i] + ' ';
+      }
+      for (let i = arr_de_number_index + 1; i < arr_de.length; i++) {
+        this.winningCriteriaRight_de += ' ' + arr_de[i];
+      }
+
+      for (let i = 0; i < arr_fr_number_index; i++) {
+        this.winningCriteriaLeft_fr += arr_fr[i] + ' ';
+      }
+      for (let i = arr_fr_number_index + 1; i < arr_fr.length; i++) {
+        this.winningCriteriaRight_fr += ' ' + arr_fr[i];
+      }
+    }
   }
 
   selectLang(language: { key: string; value: string }) {
