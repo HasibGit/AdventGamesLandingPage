@@ -37,6 +37,7 @@ export class SvRestaurantLandingPageComponent implements OnInit, AfterViewInit {
   winningCriteriaRight_en: string = '';
   winningCriteriaRight_de: string = '';
   winningCriteriaRight_fr: string = '';
+  svGameUrl: string = '';
   prizeAndWinningCriteria: {
     offer_en: string;
     offer_de: string;
@@ -89,6 +90,7 @@ export class SvRestaurantLandingPageComponent implements OnInit, AfterViewInit {
     this.setEnvironmentSpecificConfigs();
     this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
+    this.getGameOfTheWeek();
     this.getWinningCriteriaAndPrice();
   }
 
@@ -115,6 +117,19 @@ export class SvRestaurantLandingPageComponent implements OnInit, AfterViewInit {
       date: currentDate,
       lang: this.currentlySelectedLanguage.slice(0, 2),
     };
+  }
+
+  getGameOfTheWeek() {
+    let currentDate = new Date().getDate();
+    if (currentDate >= 1 && currentDate <= 5) {
+      this.svGameUrl = svConfig.gameUrl['hungry-worm'];
+    } else if (currentDate >= 6 && currentDate <= 12) {
+      this.svGameUrl = svConfig.gameUrl['sky-racer'];
+    } else if (currentDate >= 13 && currentDate <= 19) {
+      this.svGameUrl = svConfig.gameUrl['candy-craze'];
+    } else if (currentDate >= 20 && currentDate <= 24) {
+      this.svGameUrl = svConfig.gameUrl['memory-match'];
+    }
   }
 
   getWinningCriteriaAndPrice() {
@@ -319,6 +334,6 @@ export class SvRestaurantLandingPageComponent implements OnInit, AfterViewInit {
   }
 
   openGameInNewTab() {
-    window.open(svConfig.gameUrl, '_blank');
+    window.open(this.svGameUrl, '_blank');
   }
 }
