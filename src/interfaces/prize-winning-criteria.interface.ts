@@ -11,12 +11,12 @@ export interface PrizeAndWinningCriteria {
     gameId: string;
     name: string;
     day: number;
-    descriptions: description[];
-    prizeWinningCriteria: {
+    prizeDescriptions: description[];
+    winningCriteria: {
       criteriaType: number;
       scoreThreshold: number;
-      winningCriteriaDescriptions: description[];
-      congratulationDescriptions: description[];
+      criteriaDescriptions: description[];
+      winningDescriptions: description[];
     };
     id: string;
     createdOn: string;

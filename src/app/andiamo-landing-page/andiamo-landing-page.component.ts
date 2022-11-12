@@ -124,18 +124,18 @@ export class AndiamoLandingPageComponent implements OnInit, AfterViewInit {
         }
 
         this.prizeAndWinningCriteria.offer_en =
-          response.result.descriptions[0].value;
+          response.result.prizeDescriptions[0].value;
         this.prizeAndWinningCriteria.offer_de =
-          response.result.descriptions[1].value;
+          response.result.prizeDescriptions[1].value;
         this.prizeAndWinningCriteria.offer_fr =
-          response.result.descriptions[2].value;
+          response.result.prizeDescriptions[2].value;
 
         this.prizeAndWinningCriteria.winning_criteria_en =
-          response.result.prizeWinningCriteria.winningCriteriaDescriptions[0].value;
+          response.result.winningCriteria.criteriaDescriptions[0].value;
         this.prizeAndWinningCriteria.winning_criteria_de =
-          response.result.prizeWinningCriteria.winningCriteriaDescriptions[1].value;
+          response.result.winningCriteria.criteriaDescriptions[1].value;
         this.prizeAndWinningCriteria.winning_criteria_fr =
-          response.result.prizeWinningCriteria.winningCriteriaDescriptions[2].value;
+          response.result.winningCriteria.criteriaDescriptions[2].value;
 
         this.handleWinningCriteriaStyle();
 
