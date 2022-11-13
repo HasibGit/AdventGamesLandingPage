@@ -1,7 +1,7 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   Renderer2,
 } from '@angular/core';
@@ -17,13 +17,14 @@ import { environment } from 'src/environments/environment';
 import { tap, concatMap } from 'rxjs/operators';
 import { GameSchedule } from 'src/interfaces/game-schedule.interface';
 import { BrandLogoPath } from 'src/shared/brand-logo-path.config';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy {
   secondsLeft: number = 0;
   config: CountdownConfig;
   daysTillChristmasStarts: number;
@@ -75,6 +76,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     },
   ];
   isLoading: boolean;
+  subscription: Subscription;
 
   constructor(
     private renderer: Renderer2,
@@ -98,12 +100,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.getSeason();
   }
 
-  ngAfterViewInit(): void {
-    // this.setBubblesBackgroundColor();
-  }
-
   getSeason() {
-    this.appservice
+    this.subscription = this.appservice
       .getSeason(environment.companyId)
       .pipe(
         tap((seasonResponse: Season) => {
@@ -434,5 +432,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   openGameInNewTab() {
     window.open(this.gameUrl, '_blank');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
