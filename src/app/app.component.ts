@@ -14,7 +14,8 @@ import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.i
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { take } from 'rxjs';
+import { tap, concatMap, map, mergeMap, switchMap, take } from 'rxjs/operators';
+import { GameSchedule } from 'src/interfaces/game-schedule.interface';
 
 @Component({
   selector: 'app-root',
@@ -91,7 +92,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
     this.getSeason();
-    this.getWinningCriteriaAndPrice();
   }
 
   ngAfterViewInit(): void {
@@ -101,14 +101,36 @@ export class AppComponent implements OnInit, AfterViewInit {
   getSeason() {
     this.appservice
       .getSeason(environment.companyId)
-      .pipe(take(1))
-      .subscribe((response: Season) => {
-        console.log(response);
-      });
+      .pipe(
+        tap((seasonResponse: Season) => {
+          console.log('Season response');
+          console.log(seasonResponse);
+        }),
+        concatMap((seasonResponse: Season) =>
+          this.getGameSchedule(
+            seasonResponse.result.companyId,
+            seasonResponse.result.id
+          )
+        ),
+        tap((gameScheduleResponse: GameSchedule) => {
+          console.log('Game Schedule response');
+          console.log(gameScheduleResponse);
+        }),
+        concatMap((gameScheduleResponse: GameSchedule) =>
+          this.getWinningCriteriaAndPrice(
+            gameScheduleResponse.result.game.gameId
+          )
+        ),
+        tap((prizeAndWinningCriteriaResponse: PrizeAndWinningCriteria) => {
+          console.log('Prize and winning criteria response');
+          console.log(prizeAndWinningCriteriaResponse);
+        })
+      )
+      .subscribe();
   }
 
-  generatePayload() {
-    let gameid: string = 'space-shooter';
+  generatePayload(gameId: string) {
+    let gameid: string = gameId;
     let currentDate = new Date().getDate();
     return {
       gameId: gameid,
@@ -118,50 +140,57 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
   }
 
-  getWinningCriteriaAndPrice() {
+  getWinningCriteriaAndPrice(gameId: string) {
     this.isLoading = true;
     let payload: {
       gameId: string;
       date: number;
       lang: string;
       companyId: string;
-    } = this.generatePayload();
-    this.appservice
-      .getWinningCriteriaAndPrize(
-        payload.gameId,
-        payload.date,
-        payload.lang,
-        payload.companyId
-      )
-      .subscribe((response: PrizeAndWinningCriteria) => {
-        if (
-          response.errors &&
-          response.errors.errors &&
-          response.errors.errors.length > 0
-        ) {
-          this.offer_error = response.errors.errors[0];
-          this.isLoading = false;
-          return;
-        }
+    } = this.generatePayload(gameId);
+    return this.appservice.getWinningCriteriaAndPrize(
+      payload.gameId,
+      payload.date,
+      payload.lang,
+      payload.companyId
+    );
+    //   .subscribe((response: PrizeAndWinningCriteria) => {
+    //     if (
+    //       response.errors &&
+    //       response.errors.errors &&
+    //       response.errors.errors.length > 0
+    //     ) {
+    //       this.offer_error = response.errors.errors[0];
+    //       this.isLoading = false;
+    //       return;
+    //     }
 
-        this.prizeAndWinningCriteria.offer_en =
-          response.result.prizeDescriptions[0].value;
-        this.prizeAndWinningCriteria.offer_de =
-          response.result.prizeDescriptions[1].value;
-        this.prizeAndWinningCriteria.offer_fr =
-          response.result.prizeDescriptions[2].value;
+    //     console.log('Winning Criteria and price response');
+    //     console.log(response);
 
-        this.prizeAndWinningCriteria.winning_criteria_en =
-          response.result.winningCriteria.criteriaDescriptions[0].value;
-        this.prizeAndWinningCriteria.winning_criteria_de =
-          response.result.winningCriteria.criteriaDescriptions[1].value;
-        this.prizeAndWinningCriteria.winning_criteria_fr =
-          response.result.winningCriteria.criteriaDescriptions[2].value;
+    //     this.prizeAndWinningCriteria.offer_en =
+    //       response.result.prizeDescriptions[0].value;
+    //     this.prizeAndWinningCriteria.offer_de =
+    //       response.result.prizeDescriptions[1].value;
+    //     this.prizeAndWinningCriteria.offer_fr =
+    //       response.result.prizeDescriptions[2].value;
 
-        this.handleWinningCriteriaStyle();
+    //     this.prizeAndWinningCriteria.winning_criteria_en =
+    //       response.result.winningCriteria.criteriaDescriptions[0].value;
+    //     this.prizeAndWinningCriteria.winning_criteria_de =
+    //       response.result.winningCriteria.criteriaDescriptions[1].value;
+    //     this.prizeAndWinningCriteria.winning_criteria_fr =
+    //       response.result.winningCriteria.criteriaDescriptions[2].value;
 
-        this.isLoading = false;
-      });
+    //     this.handleWinningCriteriaStyle();
+
+    //     this.isLoading = false;
+    // }
+    // );
+  }
+
+  getGameSchedule(companyId: string, seasonId: string) {
+    return this.appservice.getGameSchedule(companyId, seasonId);
   }
 
   handleWinningCriteriaStyle() {
