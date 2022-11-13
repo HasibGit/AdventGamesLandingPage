@@ -9,7 +9,7 @@ import { CountdownConfig, CountdownEvent } from 'ngx-countdown/interfaces';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from './app.service';
-import { Season, Theme } from 'src/interfaces/season.interface';
+import { Season, Theme, Description } from 'src/interfaces/season.interface';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -40,6 +40,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   minutesTranslated: string;
   secondsTranslated: string;
   season: Season;
+  seasonDescriptions: Description[];
+  seasonDescription: string;
   gameUrl: string;
   winningCriteriaContainsNumber: boolean = false;
   winningCriteriaThreshold: number;
@@ -113,6 +115,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       .pipe(
         tap((seasonResponse: Season) => {
           this.season = seasonResponse;
+          this.seasonDescriptions = this.season.result.seasonDescriptions;
+          this.seasonDescription = this.seasonDescriptions[1].value; // as page initial lang is in german
           this.setLandingPageTheme(this.season.result.theme);
           this.isLoading = true;
         }),
@@ -157,9 +161,33 @@ export class AppComponent implements OnInit, AfterViewInit {
           this.handleWinningCriteriaStyle();
 
           this.isLoading = false;
+
+          this.setPrizeAndWinningCriteriaColor();
         })
       )
       .subscribe();
+  }
+
+  setPrizeAndWinningCriteriaColor() {
+    // had to apply to give the dom time to load before i access element using elemRef
+    setTimeout(() => {
+      if (this.winningCriteriaContainsNumber) {
+        let requiredPoints =
+          this.elemRef.nativeElement.querySelector('.required-points');
+        this.renderer.setStyle(
+          requiredPoints,
+          'color',
+          this.season.result.theme.requiredPointsColor
+        );
+      }
+
+      let offer = this.elemRef.nativeElement.querySelector('.offer');
+      this.renderer.setStyle(
+        offer,
+        'color',
+        this.season.result.theme.offerColor
+      );
+    }, 0.01);
   }
 
   setLandingPageTheme(theme: Theme) {
@@ -173,6 +201,20 @@ export class AppComponent implements OnInit, AfterViewInit {
       '.christmas-deadline'
     );
     this.renderer.setStyle(seasonDeadline, 'color', theme.seasonDeadlineColor);
+    let playButton = this.elemRef.nativeElement.querySelector('.play-game-btn');
+    this.renderer.setStyle(
+      playButton,
+      'backgroundColor',
+      theme.playButtonBackgroundColor
+    );
+    this.renderer.setStyle(
+      playButton,
+      'borderColor',
+      theme.playButtonBorderColor
+    );
+    let playButtonText =
+      this.elemRef.nativeElement.querySelector('.button-text');
+    this.renderer.setStyle(playButtonText, 'color', theme.playButtonTextColor);
   }
 
   generatePayload(gameId: string) {
@@ -345,6 +387,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   selectLang(language: { key: string; value: string }) {
     this.currentlySelectedLanguage = language.key;
     this.setCountdownTimerTranslation(this.currentlySelectedLanguage);
+    this.setSeasonDescriptionTranslation(this.currentlySelectedLanguage);
     this.translateService.use(language.key);
 
     if (this.currentlySelectedLanguage == 'en-US') {
@@ -375,6 +418,20 @@ export class AppComponent implements OnInit, AfterViewInit {
         break;
     }
     this.getSecondsLeftTillNextOffer();
+  }
+
+  setSeasonDescriptionTranslation(currentLanguage: string) {
+    switch (currentLanguage) {
+      case 'en-US':
+        this.seasonDescription = this.seasonDescriptions[0].value;
+        break;
+      case 'de-DE':
+        this.seasonDescription = this.seasonDescriptions[1].value;
+        break;
+      case 'fr-FR':
+        this.seasonDescription = this.seasonDescriptions[2].value;
+        break;
+    }
   }
 
   getOfferKey(): string {
