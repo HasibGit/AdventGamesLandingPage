@@ -15,12 +15,7 @@ export interface Season {
     companyId: string;
     startTime: string;
     endTime: string;
-    seasonDescriptions: [
-      {
-        culture: string;
-        value: string;
-      }
-    ];
+    seasonDescriptions: description[];
     theme: {
       backgroundColor: string;
       bubbleType1BackgroundColor: string;
