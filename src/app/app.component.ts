@@ -9,10 +9,12 @@ import { CountdownConfig, CountdownEvent } from 'ngx-countdown/interfaces';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from './app.service';
+import { Season } from 'src/interfaces/season.interface';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -88,11 +90,21 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.setEnvironmentSpecificConfigs();
     this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
+    this.getSeason();
     this.getWinningCriteriaAndPrice();
   }
 
   ngAfterViewInit(): void {
     this.setBubblesBackgroundColor();
+  }
+
+  getSeason() {
+    this.appservice
+      .getSeason(environment.companyId)
+      .pipe(take(1))
+      .subscribe((response: Season) => {
+        console.log(response);
+      });
   }
 
   generatePayload() {
