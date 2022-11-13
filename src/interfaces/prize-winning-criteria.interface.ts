@@ -24,5 +24,5 @@ export interface PrizeAndWinningCriteria {
     createdOn: string;
     modifiedOn: string;
   };
-  isSuccess: true;
+  isSuccess: boolean;
 }
