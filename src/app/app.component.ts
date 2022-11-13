@@ -9,12 +9,20 @@ import { CountdownConfig, CountdownEvent } from 'ngx-countdown/interfaces';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from './app.service';
-import { Season } from 'src/interfaces/season.interface';
+import { Season, Theme } from 'src/interfaces/season.interface';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { tap, concatMap, map, mergeMap, switchMap, take } from 'rxjs/operators';
+import {
+  tap,
+  concatMap,
+  map,
+  mergeMap,
+  switchMap,
+  take,
+  distinct,
+} from 'rxjs/operators';
 import { GameSchedule } from 'src/interfaces/game-schedule.interface';
 
 @Component({
@@ -31,6 +39,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   hoursTranslated: string;
   minutesTranslated: string;
   secondsTranslated: string;
+  season: Season;
+  gameUrl: string;
   winningCriteriaContainsNumber: boolean = false;
   winningCriteriaThreshold: number;
   winningCriteriaLeft_en: string = '';
@@ -82,7 +92,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.isLoading = true;
     this.hoursTranslated = 'Std.';
     this.minutesTranslated = 'min';
     this.secondsTranslated = 'sek.';
@@ -95,7 +104,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.setBubblesBackgroundColor();
+    // this.setBubblesBackgroundColor();
   }
 
   getSeason() {
@@ -103,8 +112,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       .getSeason(environment.companyId)
       .pipe(
         tap((seasonResponse: Season) => {
-          console.log('Season response');
-          console.log(seasonResponse);
+          this.season = seasonResponse;
+          this.setLandingPageTheme(this.season.result.theme);
+          this.isLoading = true;
         }),
         concatMap((seasonResponse: Season) =>
           this.getGameSchedule(
@@ -113,8 +123,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           )
         ),
         tap((gameScheduleResponse: GameSchedule) => {
-          console.log('Game Schedule response');
-          console.log(gameScheduleResponse);
+          this.gameUrl = gameScheduleResponse.result.game.gameUrl;
         }),
         concatMap((gameScheduleResponse: GameSchedule) =>
           this.getWinningCriteriaAndPrice(
@@ -122,11 +131,42 @@ export class AppComponent implements OnInit, AfterViewInit {
           )
         ),
         tap((prizeAndWinningCriteriaResponse: PrizeAndWinningCriteria) => {
-          console.log('Prize and winning criteria response');
-          console.log(prizeAndWinningCriteriaResponse);
+          if (
+            prizeAndWinningCriteriaResponse.errors &&
+            prizeAndWinningCriteriaResponse.errors.errors &&
+            prizeAndWinningCriteriaResponse.errors.errors.length > 0
+          ) {
+            this.offer_error = prizeAndWinningCriteriaResponse.errors.errors[0];
+            this.isLoading = false;
+            return;
+          }
+          this.prizeAndWinningCriteria.offer_en =
+            prizeAndWinningCriteriaResponse.result.prizeDescriptions[0].value;
+          this.prizeAndWinningCriteria.offer_de =
+            prizeAndWinningCriteriaResponse.result.prizeDescriptions[1].value;
+          this.prizeAndWinningCriteria.offer_fr =
+            prizeAndWinningCriteriaResponse.result.prizeDescriptions[2].value;
+
+          this.prizeAndWinningCriteria.winning_criteria_en =
+            prizeAndWinningCriteriaResponse.result.winningCriteria.criteriaDescriptions[0].value;
+          this.prizeAndWinningCriteria.winning_criteria_de =
+            prizeAndWinningCriteriaResponse.result.winningCriteria.criteriaDescriptions[1].value;
+          this.prizeAndWinningCriteria.winning_criteria_fr =
+            prizeAndWinningCriteriaResponse.result.winningCriteria.criteriaDescriptions[2].value;
+
+          this.handleWinningCriteriaStyle();
+
+          this.isLoading = false;
         })
       )
       .subscribe();
+  }
+
+  setLandingPageTheme(theme: Theme) {
+    let container = this.elemRef.nativeElement.querySelectorAll('.container');
+    this.renderer.setStyle(container, 'backgroundColor', theme.backgroundColor);
+
+    this.setBubblesBackgroundColor(theme);
   }
 
   generatePayload(gameId: string) {
@@ -154,39 +194,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       payload.lang,
       payload.companyId
     );
-    //   .subscribe((response: PrizeAndWinningCriteria) => {
-    //     if (
-    //       response.errors &&
-    //       response.errors.errors &&
-    //       response.errors.errors.length > 0
-    //     ) {
-    //       this.offer_error = response.errors.errors[0];
-    //       this.isLoading = false;
-    //       return;
-    //     }
-
-    //     console.log('Winning Criteria and price response');
-    //     console.log(response);
-
-    //     this.prizeAndWinningCriteria.offer_en =
-    //       response.result.prizeDescriptions[0].value;
-    //     this.prizeAndWinningCriteria.offer_de =
-    //       response.result.prizeDescriptions[1].value;
-    //     this.prizeAndWinningCriteria.offer_fr =
-    //       response.result.prizeDescriptions[2].value;
-
-    //     this.prizeAndWinningCriteria.winning_criteria_en =
-    //       response.result.winningCriteria.criteriaDescriptions[0].value;
-    //     this.prizeAndWinningCriteria.winning_criteria_de =
-    //       response.result.winningCriteria.criteriaDescriptions[1].value;
-    //     this.prizeAndWinningCriteria.winning_criteria_fr =
-    //       response.result.winningCriteria.criteriaDescriptions[2].value;
-
-    //     this.handleWinningCriteriaStyle();
-
-    //     this.isLoading = false;
-    // }
-    // );
   }
 
   getGameSchedule(companyId: string, seasonId: string) {
@@ -252,23 +259,35 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setBubblesBackgroundColor() {
+  setBubblesBackgroundColor(theme: Theme) {
     let typeOneBubbles =
       this.elemRef.nativeElement.querySelectorAll('.bubble-type-1');
     [...typeOneBubbles].forEach((element) => {
-      this.renderer.setStyle(element, 'backgroundColor', '#eee4e5');
+      this.renderer.setStyle(
+        element,
+        'backgroundColor',
+        theme.bubbleType1BackgroundColor
+      );
     });
 
     let typeTwoBubbles =
       this.elemRef.nativeElement.querySelectorAll('.bubble-type-2');
     [...typeTwoBubbles].forEach((element) => {
-      this.renderer.setStyle(element, 'backgroundColor', '#caaaaf');
+      this.renderer.setStyle(
+        element,
+        'backgroundColor',
+        theme.bubbleType2BackgroundColor
+      );
     });
 
     let typeThreeBubbles =
       this.elemRef.nativeElement.querySelectorAll('.bubble-type-3');
     [...typeThreeBubbles].forEach((element) => {
-      this.renderer.setStyle(element, 'backgroundColor', '#863a46');
+      this.renderer.setStyle(
+        element,
+        'backgroundColor',
+        theme.bubbleType3BackgroundColor
+      );
     });
   }
 
@@ -315,5 +334,49 @@ export class AppComponent implements OnInit, AfterViewInit {
       '<span>' + splittedText[4] + ' ' + this.secondsTranslated + '</span>';
 
     return hours + minutes + seconds;
+  }
+
+  selectLang(language: { key: string; value: string }) {
+    this.currentlySelectedLanguage = language.key;
+    this.setCountdownTimerTranslation(this.currentlySelectedLanguage);
+    this.translateService.use(language.key);
+
+    if (this.currentlySelectedLanguage == 'en-US') {
+      this.location.replaceState('/en');
+    } else if (this.currentlySelectedLanguage == 'de-DE') {
+      this.location.replaceState('/de');
+    } else {
+      this.location.replaceState('/fr');
+    }
+  }
+
+  setCountdownTimerTranslation(currentLanguage: string) {
+    switch (currentLanguage) {
+      case 'de-DE':
+        this.hoursTranslated = 'Std.';
+        this.minutesTranslated = 'min';
+        this.secondsTranslated = 'sek.';
+        break;
+      case 'en-US':
+        this.hoursTranslated = 'h';
+        this.minutesTranslated = 'min';
+        this.secondsTranslated = 'sec';
+        break;
+      case 'fr-FR':
+        this.hoursTranslated = 'h';
+        this.minutesTranslated = 'min';
+        this.secondsTranslated = 'sec';
+        break;
+    }
+    this.getSecondsLeftTillNextOffer();
+  }
+
+  getOfferKey(): string {
+    let offerKey = 'SPIGA_OFFER_DETAILS';
+    return offerKey;
+  }
+
+  openGameInNewTab() {
+    window.open(this.gameUrl, '_blank');
   }
 }
