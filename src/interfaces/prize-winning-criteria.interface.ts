@@ -9,6 +9,8 @@ export interface PrizeAndWinningCriteria {
   };
   result: {
     gameId: string;
+    companyId: string;
+    seasonId: string;
     name: string;
     day: number;
     prizeDescriptions: description[];

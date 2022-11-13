@@ -13,6 +13,7 @@ import { AppService } from '../app.service';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-spiga-landing-page',
@@ -102,16 +103,29 @@ export class SpigaLandingPageComponent implements OnInit, AfterViewInit {
       gameId: gameid,
       date: currentDate,
       lang: this.currentlySelectedLanguage.slice(0, 2),
+      companyId: environment.companyId,
     };
   }
 
   getWinningCriteriaAndPrice() {
     this.isLoading = true;
-    let payload: { gameId: string; date: number; lang: string } =
-      this.generatePayload();
+    let payload: {
+      gameId: string;
+      date: number;
+      lang: string;
+      companyId: string;
+    } = this.generatePayload();
     this.appservice
-      .getWinningCriteriaAndPrize(payload.gameId, payload.date, payload.lang)
+      .getWinningCriteriaAndPrize(
+        payload.gameId,
+        payload.date,
+        payload.lang,
+        payload.companyId
+      )
       .subscribe((response: PrizeAndWinningCriteria) => {
+        console.log('Winning criteria response: ');
+        console.log(response);
+
         if (
           response.errors &&
           response.errors.errors &&

@@ -13,6 +13,7 @@ import { AppService } from '../app.service';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sv-restaurant-landing-page',
@@ -99,46 +100,35 @@ export class SvRestaurantLandingPageComponent implements OnInit, AfterViewInit {
   }
 
   generatePayload() {
-    let gameid: string = '';
+    let gameid: string = 'space-shooter';
     let currentDate = new Date().getDate();
-
-    if (currentDate >= 1 && currentDate <= 5) {
-      gameid = 'hungry-worm';
-    } else if (currentDate >= 6 && currentDate <= 12) {
-      gameid = 'sky-racer';
-    } else if (currentDate >= 13 && currentDate <= 19) {
-      gameid = 'candy-craze';
-    } else if (currentDate >= 20 && currentDate <= 24) {
-      gameid = 'memory-match';
-    }
-
     return {
       gameId: gameid,
       date: currentDate,
       lang: this.currentlySelectedLanguage.slice(0, 2),
+      companyId: environment.companyId,
     };
-  }
-
-  getGameOfTheWeek() {
-    let currentDate = new Date().getDate();
-    if (currentDate >= 1 && currentDate <= 5) {
-      this.svGameUrl = svConfig.gameUrl['hungry-worm'];
-    } else if (currentDate >= 6 && currentDate <= 12) {
-      this.svGameUrl = svConfig.gameUrl['sky-racer'];
-    } else if (currentDate >= 13 && currentDate <= 19) {
-      this.svGameUrl = svConfig.gameUrl['candy-craze'];
-    } else if (currentDate >= 20 && currentDate <= 24) {
-      this.svGameUrl = svConfig.gameUrl['memory-match'];
-    }
   }
 
   getWinningCriteriaAndPrice() {
     this.isLoading = true;
-    let payload: { gameId: string; date: number; lang: string } =
-      this.generatePayload();
+    let payload: {
+      gameId: string;
+      date: number;
+      lang: string;
+      companyId: string;
+    } = this.generatePayload();
     this.appservice
-      .getWinningCriteriaAndPrize(payload.gameId, payload.date, payload.lang)
+      .getWinningCriteriaAndPrize(
+        payload.gameId,
+        payload.date,
+        payload.lang,
+        payload.companyId
+      )
       .subscribe((response: PrizeAndWinningCriteria) => {
+        console.log('Winning criteria response: ');
+        console.log(response);
+
         if (
           response.errors &&
           response.errors.errors &&
@@ -167,6 +157,19 @@ export class SvRestaurantLandingPageComponent implements OnInit, AfterViewInit {
 
         this.isLoading = false;
       });
+  }
+
+  getGameOfTheWeek() {
+    let currentDate = new Date().getDate();
+    if (currentDate >= 1 && currentDate <= 5) {
+      this.svGameUrl = svConfig.gameUrl['hungry-worm'];
+    } else if (currentDate >= 6 && currentDate <= 12) {
+      this.svGameUrl = svConfig.gameUrl['sky-racer'];
+    } else if (currentDate >= 13 && currentDate <= 19) {
+      this.svGameUrl = svConfig.gameUrl['candy-craze'];
+    } else if (currentDate >= 20 && currentDate <= 24) {
+      this.svGameUrl = svConfig.gameUrl['memory-match'];
+    }
   }
 
   handleWinningCriteriaStyle() {

@@ -9,14 +9,20 @@ import { environment } from '../environments/environment';
 export class AppService {
   constructor(private http: HttpClient) {}
 
-  getWinningCriteriaAndPrize(gameId: string, day: number, language: string) {
+  getWinningCriteriaAndPrize(
+    gameId: string,
+    day: number,
+    language: string,
+    companyId: string
+  ) {
     let httpParams = new HttpParams()
       .set('gameId', gameId)
       .set('day', day)
-      .set('culture', language);
+      .set('culture', language)
+      .set('companyId', companyId);
 
     return this.http.get<PrizeAndWinningCriteria>(
-      `${environment.baseUrl}api/Query/GetGamePrize`,
+      `${environment.backendUrl}api/Query/GetGamePrize`,
       {
         headers: new HttpHeaders().set(
           'Content-Type',
