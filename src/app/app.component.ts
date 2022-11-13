@@ -163,10 +163,16 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   setLandingPageTheme(theme: Theme) {
-    let container = this.elemRef.nativeElement.querySelectorAll('.container');
+    let container = this.elemRef.nativeElement.querySelector('.container');
     this.renderer.setStyle(container, 'backgroundColor', theme.backgroundColor);
-
     this.setBubblesBackgroundColor(theme);
+    let card = this.elemRef.nativeElement.querySelector('.offer-card');
+    this.renderer.setStyle(card, 'backgroundColor', theme.cardBackgroundColor);
+    this.renderer.setStyle(card, 'borderColor', theme.cardBorder);
+    let seasonDeadline = this.elemRef.nativeElement.querySelector(
+      '.christmas-deadline'
+    );
+    this.renderer.setStyle(seasonDeadline, 'color', theme.seasonDeadlineColor);
   }
 
   generatePayload(gameId: string) {
