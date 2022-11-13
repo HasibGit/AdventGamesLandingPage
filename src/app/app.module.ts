@@ -10,11 +10,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Routes, RouterModule } from '@angular/router';
-import { SpigaLandingPageComponent } from './spiga-landing-page/spiga-landing-page.component';
-import { EmilLandingPageComponent } from './emil-landing-page/emil-landing-page.component';
-import { AndiamoLandingPageComponent } from './andiamo-landing-page/andiamo-landing-page.component';
-import { SvRestaurantLandingPageComponent } from './sv-restaurant-landing-page/sv-restaurant-landing-page.component';
-import { environment } from 'src/environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,96 +27,8 @@ const appRoutes: Routes = [
   },
 ];
 
-// if (environment.environmentName == 'SPIGA') {
-//   appRoutes.push(
-//     {
-//       path: '',
-//       redirectTo: 'de',
-//       pathMatch: 'full',
-//     },
-//     {
-//       path: 'de',
-//       component: SpigaLandingPageComponent,
-//     },
-//     {
-//       path: 'en',
-//       component: SpigaLandingPageComponent,
-//     },
-//     {
-//       path: 'fr',
-//       component: SpigaLandingPageComponent,
-//     }
-//   );
-// } else if (environment.environmentName == 'EMIL') {
-//   appRoutes.push(
-//     {
-//       path: '',
-//       redirectTo: 'de',
-//       pathMatch: 'full',
-//     },
-//     {
-//       path: 'de',
-//       component: EmilLandingPageComponent,
-//     },
-//     {
-//       path: 'en',
-//       component: EmilLandingPageComponent,
-//     },
-//     {
-//       path: 'fr',
-//       component: EmilLandingPageComponent,
-//     }
-//   );
-// } else if (environment.environmentName == 'ANDIAMO') {
-//   appRoutes.push(
-//     {
-//       path: '',
-//       redirectTo: 'de',
-//       pathMatch: 'full',
-//     },
-//     {
-//       path: 'de',
-//       component: AndiamoLandingPageComponent,
-//     },
-//     {
-//       path: 'en',
-//       component: AndiamoLandingPageComponent,
-//     },
-//     {
-//       path: 'fr',
-//       component: AndiamoLandingPageComponent,
-//     }
-//   );
-// } else if (environment.environmentName == 'SV_RESTAURANT') {
-//   appRoutes.push(
-//     {
-//       path: '',
-//       redirectTo: 'de',
-//       pathMatch: 'full',
-//     },
-//     {
-//       path: 'de',
-//       component: SvRestaurantLandingPageComponent,
-//     },
-//     {
-//       path: 'en',
-//       component: SvRestaurantLandingPageComponent,
-//     },
-//     {
-//       path: 'fr',
-//       component: SvRestaurantLandingPageComponent,
-//     }
-//   );
-// }
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    SpigaLandingPageComponent,
-    EmilLandingPageComponent,
-    AndiamoLandingPageComponent,
-    SvRestaurantLandingPageComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

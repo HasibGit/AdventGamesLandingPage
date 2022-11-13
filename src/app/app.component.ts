@@ -14,16 +14,9 @@ import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.i
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import {
-  tap,
-  concatMap,
-  map,
-  mergeMap,
-  switchMap,
-  take,
-  distinct,
-} from 'rxjs/operators';
+import { tap, concatMap } from 'rxjs/operators';
 import { GameSchedule } from 'src/interfaces/game-schedule.interface';
+import { BrandLogoPath } from 'src/shared/brand-logo-path.config';
 
 @Component({
   selector: 'app-root',
@@ -344,7 +337,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   setEnvironmentSpecificConfigs() {
-    this.brandLogoPath = '../assets/images/spiga_brand_logo.png';
+    this.brandLogoPath = BrandLogoPath.SPIGA;
   }
 
   getDaysTillChristmas() {
