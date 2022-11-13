@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Season } from 'src/interfaces/season.interface';
+import { GameSchedule } from 'src/interfaces/game-schedule.interface';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -15,6 +16,24 @@ export class AppService {
 
     return this.http.get<Season>(
       `${environment.backendUrl}api/Query/GetSeason`,
+      {
+        headers: new HttpHeaders().set(
+          'Content-Type',
+          'application/json; charset=utf-8'
+        ),
+        params: httpParams,
+        responseType: 'json',
+      }
+    );
+  }
+
+  getGameSchedule(companyId: string, seasonId: string) {
+    let httpParams = new HttpParams()
+      .set('companyId', companyId)
+      .set('seasonId', seasonId);
+
+    return this.http.get<GameSchedule>(
+      `${environment.backendUrl}api/Query/GetGameSchedule`,
       {
         headers: new HttpHeaders().set(
           'Content-Type',
