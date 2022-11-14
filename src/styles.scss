@@ -35,16 +35,6 @@ p {
   box-sizing: border-box;
 }
 
-.spiga-font {
-  font-family: "universe-condensed-bold", "arial", sans-serif;
-}
-.emil-font {
-  font-family: "raleway-bold", "arial", sans-serif;
-}
-.andiamo-sv-font {
-  font-family: "frutiger", "arial", sans-serif;
-}
-
 .mb-16 {
   margin-bottom: 16px;
 }
@@ -174,6 +164,15 @@ p {
   height: 100vh;
   width: 100vw;
   position: absolute;
+}
+
+.no-season-container {
+  padding: 20px;
+  background-color: #630311;
+  h1 {
+    text-align: center;
+    color: #fff;
+  }
 }
 
 .top-section,

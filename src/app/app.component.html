@@ -2,7 +2,12 @@
   [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(255,255,255,1)', primaryColour: '#630311', secondaryColour: '#630311', tertiaryColour: '#630311' }">
 </ngx-loading>
 
-<div class="container" fxLayout="column" fxLayoutAlign="center center" [fxShow]="!loading">
+<div class="container no-season-container" fxLayout="column" fxLayoutAlign="center center"
+  *ngIf="no_season_error && no_season_error.length > 0">
+  <h1>{{no_season_error}}</h1>
+</div>
+
+<div class="container" fxLayout="column" fxLayoutAlign="center center" [fxShow]="!loading" *ngIf="!no_season_error">
   <section class="bubbles">
     <div class="bubble-type-2" style="top: 10vh; left: 4vw"></div>
     <div class="bubble-type-3" style="top: 5vh; left: 50vw"></div>

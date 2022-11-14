@@ -60,6 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
     winning_criteria_de: '',
     winning_criteria_fr: '',
   };
+  no_season_error: string;
   offer_error: string;
   languages: { key: string; value: string }[] = [
     {
@@ -107,6 +108,16 @@ export class AppComponent implements OnInit, OnDestroy {
       .getSeason(environment.companyId)
       .pipe(
         tap((seasonResponse: Season) => {
+          if (
+            seasonResponse.errors &&
+            seasonResponse.errors.errors &&
+            seasonResponse.errors.errors.length > 0
+          ) {
+            this.no_season_error = seasonResponse.errors.errors[0];
+            this.isLoading = false;
+            this.loading = false;
+            return;
+          }
           this.season = seasonResponse;
           this.seasonDescriptions = this.season.result.seasonDescriptions;
           this.seasonDescription = this.seasonDescriptions[1].value; // as page initial lang is in german
