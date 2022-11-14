@@ -1,4 +1,6 @@
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+<ngx-loading [show]="loading"
+  [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(255,255,255,1)', primaryColour: '#630311', secondaryColour: '#630311', tertiaryColour: '#630311' }">
+</ngx-loading>
 
 <div class="container" fxLayout="column" fxLayoutAlign="center center" [fxShow]="!loading">
   <section class="bubbles">
