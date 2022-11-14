@@ -76,6 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
     },
   ];
   isLoading: boolean;
+  loading: boolean = true;
   subscription: Subscription;
 
   constructor(
@@ -89,6 +90,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.hoursTranslated = 'Std.';
     this.minutesTranslated = 'min';
     this.secondsTranslated = 'sek.';
@@ -205,6 +207,7 @@ export class AppComponent implements OnInit, OnDestroy {
     let playButtonText =
       this.elemRef.nativeElement.querySelector('.button-text');
     this.renderer.setStyle(playButtonText, 'color', theme.playButtonTextColor);
+    this.loading = false;
   }
 
   generatePayload(gameId: string) {

@@ -1,5 +1,6 @@
-<div class="container" fxLayout="column" fxLayoutAlign="center center">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 
+<div class="container" fxLayout="column" fxLayoutAlign="center center" [fxShow]="!loading">
   <section class="bubbles">
     <div class="bubble-type-2" style="top: 10vh; left: 4vw"></div>
     <div class="bubble-type-3" style="top: 5vh; left: 50vw"></div>

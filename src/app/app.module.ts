@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Routes, RouterModule } from '@angular/router';
+import { NgxLoadingModule } from 'ngx-loading';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     MatChipsModule,
     MatProgressBarModule,
     HttpClientModule,
+    NgxLoadingModule.forRoot({}),
     TranslateModule.forRoot({
       defaultLanguage: 'de-DE',
       loader: {
