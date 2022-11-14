@@ -138,6 +138,7 @@ export class AppComponent implements OnInit, OnDestroy {
           ) {
             this.offer_error = gameScheduleResponse.errors.errors[0];
             this.isLoading = false;
+            this.setPrizeAndWinningCriteriaColor();
             return;
           }
           this.gameUrl = gameScheduleResponse.result.game.gameUrl;
@@ -155,6 +156,7 @@ export class AppComponent implements OnInit, OnDestroy {
           ) {
             this.offer_error = prizeAndWinningCriteriaResponse.errors.errors[0];
             this.isLoading = false;
+            this.setPrizeAndWinningCriteriaColor();
             return;
           }
           this.prizeAndWinningCriteria.offer_en =
