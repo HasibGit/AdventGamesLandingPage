@@ -72,37 +72,11 @@ p {
     //   -2px -2px #fff, 2px -2px #fff, -2px 2px #fff;
   }
 }
-.emil-count-down {
-  span {
-    font-size: 17.5px;
-    font-weight: 600;
-    color: #432d1f;
-    // text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 2px 2px #fff,
-    //   -2px -2px #fff, 2px -2px #fff, -2px 2px #fff;
-  }
-}
-.andiamo-count-down {
-  span {
-    font-size: 20px;
-    font-weight: 600;
-    color: #9ea0a2;
-  }
-}
 
 @media only screen and (max-width: 450px) {
   .count-down {
     span {
       font-size: 16px;
-    }
-  }
-  .andiamo-count-down {
-    span {
-      font-size: 15px;
-    }
-  }
-  .emil-count-down {
-    span {
-      font-size: 15px;
     }
   }
 }
@@ -112,38 +86,11 @@ p {
       font-size: 15px;
     }
   }
-  .andiamo-count-down {
-    span {
-      font-size: 14px;
-    }
-  }
-  .emil-count-down {
-    span {
-      font-size: 13.5px;
-    }
-  }
 }
 @media only screen and (max-width: 380px) {
   .count-down {
     span {
       font-size: 15px;
-    }
-  }
-  .andiamo-count-down {
-    span {
-      font-size: 14px;
-    }
-  }
-  .emil-count-down {
-    span {
-      font-size: 13.5px !important;
-    }
-  }
-}
-@media only screen and (max-width: 370px) {
-  .andiamo-count-down {
-    span {
-      font-size: 13.2px;
     }
   }
 }
