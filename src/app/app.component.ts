@@ -120,6 +120,15 @@ export class AppComponent implements OnInit, OnDestroy {
           )
         ),
         tap((gameScheduleResponse: GameSchedule) => {
+          if (
+            gameScheduleResponse.errors &&
+            gameScheduleResponse.errors.errors &&
+            gameScheduleResponse.errors.errors.length > 0
+          ) {
+            this.offer_error = gameScheduleResponse.errors.errors[0];
+            this.isLoading = false;
+            return;
+          }
           this.gameUrl = gameScheduleResponse.result.game.gameUrl;
         }),
         concatMap((gameScheduleResponse: GameSchedule) =>
