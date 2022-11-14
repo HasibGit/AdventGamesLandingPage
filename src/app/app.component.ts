@@ -188,9 +188,8 @@ export class AppComponent implements OnInit, OnDestroy {
     let card = this.elemRef.nativeElement.querySelector('.offer-card');
     this.renderer.setStyle(card, 'backgroundColor', theme.cardBackgroundColor);
     this.renderer.setStyle(card, 'borderColor', theme.cardBorder);
-    let seasonDeadline = this.elemRef.nativeElement.querySelector(
-      '.christmas-deadline'
-    );
+    let seasonDeadline =
+      this.elemRef.nativeElement.querySelector('.season-deadline');
     this.renderer.setStyle(seasonDeadline, 'color', theme.seasonDeadlineColor);
     let playButton = this.elemRef.nativeElement.querySelector('.play-game-btn');
     this.renderer.setStyle(
