@@ -194,6 +194,17 @@ export class AppComponent implements OnInit, OnDestroy {
         );
       }
 
+      let winningCriterias =
+        this.elemRef.nativeElement.querySelectorAll('.winning-criteria');
+
+      [...winningCriterias].forEach((winningCriteria) => {
+        this.renderer.setStyle(
+          winningCriteria,
+          'color',
+          this.season.result.theme.winningCriteriaColor
+        );
+      });
+
       let offer = this.elemRef.nativeElement.querySelector('.offer');
       this.renderer.setStyle(
         offer,
@@ -213,6 +224,9 @@ export class AppComponent implements OnInit, OnDestroy {
     let seasonDeadline =
       this.elemRef.nativeElement.querySelector('.season-deadline');
     this.renderer.setStyle(seasonDeadline, 'color', theme.seasonDeadlineColor);
+    let offerDetails =
+      this.elemRef.nativeElement.querySelector('.offer-details');
+    this.renderer.setStyle(offerDetails, 'color', theme.offerDetailsColor);
     let playButton = this.elemRef.nativeElement.querySelector('.play-game-btn');
     this.renderer.setStyle(
       playButton,
