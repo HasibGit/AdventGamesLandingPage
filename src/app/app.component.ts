@@ -53,13 +53,14 @@ export class AppComponent implements OnInit, OnDestroy {
     winning_criteria_de: string;
     winning_criteria_fr: string;
   } = {
-    offer_de: '',
     offer_en: '',
+    offer_de: '',
     offer_fr: '',
     winning_criteria_en: '',
     winning_criteria_de: '',
     winning_criteria_fr: '',
   };
+  termsAndConditionsUrl: string;
   no_season_error: string;
   offer_error: string;
   languages: { key: string; value: string }[] = [
@@ -121,7 +122,14 @@ export class AppComponent implements OnInit, OnDestroy {
           }
           this.season = seasonResponse;
           this.seasonDescriptions = this.season.result.seasonDescriptions;
-          this.seasonDescription = this.seasonDescriptions[1].value; // as page initial lang is in german
+          this.seasonDescription = this.getValueConsideringSelectedLanguage(
+            this.seasonDescriptions
+          ); // initially Selected language is german
+
+          this.termsAndConditionsUrl = this.getValueConsideringSelectedLanguage(
+            this.season.result.termsAndConditionsUrls
+          );
+
           this.setLandingPageTheme(this.season.result.theme);
           this.isLoading = true;
         }),
@@ -160,19 +168,38 @@ export class AppComponent implements OnInit, OnDestroy {
             this.setPrizeAndWinningCriteriaColor();
             return;
           }
-          this.prizeAndWinningCriteria.offer_en =
-            prizeAndWinningCriteriaResponse.result.prizeDescriptions[0].value;
-          this.prizeAndWinningCriteria.offer_de =
-            prizeAndWinningCriteriaResponse.result.prizeDescriptions[1].value;
-          this.prizeAndWinningCriteria.offer_fr =
-            prizeAndWinningCriteriaResponse.result.prizeDescriptions[2].value;
+
+          this.prizeAndWinningCriteria.offer_en = this.getValueByLang(
+            prizeAndWinningCriteriaResponse.result.prizeDescriptions,
+            'en'
+          );
+          this.prizeAndWinningCriteria.offer_de = this.getValueByLang(
+            prizeAndWinningCriteriaResponse.result.prizeDescriptions,
+            'de'
+          );
+          this.prizeAndWinningCriteria.offer_fr = this.getValueByLang(
+            prizeAndWinningCriteriaResponse.result.prizeDescriptions,
+            'fr'
+          );
 
           this.prizeAndWinningCriteria.winning_criteria_en =
-            prizeAndWinningCriteriaResponse.result.winningCriteria.criteriaDescriptions[0].value;
+            this.getValueByLang(
+              prizeAndWinningCriteriaResponse.result.winningCriteria
+                .criteriaDescriptions,
+              'en'
+            );
           this.prizeAndWinningCriteria.winning_criteria_de =
-            prizeAndWinningCriteriaResponse.result.winningCriteria.criteriaDescriptions[1].value;
+            this.getValueByLang(
+              prizeAndWinningCriteriaResponse.result.winningCriteria
+                .criteriaDescriptions,
+              'de'
+            );
           this.prizeAndWinningCriteria.winning_criteria_fr =
-            prizeAndWinningCriteriaResponse.result.winningCriteria.criteriaDescriptions[2].value;
+            this.getValueByLang(
+              prizeAndWinningCriteriaResponse.result.winningCriteria
+                .criteriaDescriptions,
+              'fr'
+            );
 
           this.handleWinningCriteriaStyle();
 
@@ -418,15 +445,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.currentlySelectedLanguage = language.key;
     this.setCountdownTimerTranslation(this.currentlySelectedLanguage);
     this.setSeasonDescriptionTranslation(this.currentlySelectedLanguage);
+    this.setTermsAndConditionsUrl(this.currentlySelectedLanguage);
     this.translateService.use(language.key);
 
-    if (this.currentlySelectedLanguage == 'en-US') {
-      this.location.replaceState('/en');
-    } else if (this.currentlySelectedLanguage == 'de-DE') {
-      this.location.replaceState('/de');
-    } else {
-      this.location.replaceState('/fr');
-    }
+    this.location.replaceState(
+      '/' + this.currentlySelectedLanguage.slice(0, 2)
+    );
   }
 
   setCountdownTimerTranslation(currentLanguage: string) {
@@ -451,17 +475,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   setSeasonDescriptionTranslation(currentLanguage: string) {
-    switch (currentLanguage) {
-      case 'en-US':
-        this.seasonDescription = this.seasonDescriptions[0].value;
-        break;
-      case 'de-DE':
-        this.seasonDescription = this.seasonDescriptions[1].value;
-        break;
-      case 'fr-FR':
-        this.seasonDescription = this.seasonDescriptions[2].value;
-        break;
-    }
+    this.seasonDescription = this.getValueByLang(
+      this.seasonDescriptions,
+      currentLanguage.slice(0, 2)
+    );
+  }
+
+  setTermsAndConditionsUrl(currentLanguage: string) {
+    this.termsAndConditionsUrl = this.getValueByLang(
+      this.season.result.termsAndConditionsUrls,
+      currentLanguage.slice(0, 2)
+    );
   }
 
   getOfferKey(): string {
@@ -477,6 +501,46 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleAgreementState() {
     this.termsAgreed = !this.termsAgreed;
+  }
+
+  openTermsAndCondition() {
+    if (this.termsAndConditionsUrl != 'Value does not exist') {
+      window.open(this.termsAndConditionsUrl, '_blank');
+    }
+  }
+
+  getValueConsideringSelectedLanguage(arr: Description[]) {
+    if (!arr || arr.length == 0) {
+      return 'Value does not exist';
+    }
+
+    let searchKey = this.currentlySelectedLanguage.slice(0, 2);
+
+    let itemIndex: number = arr.findIndex(
+      (description) => description.culture == searchKey
+    );
+
+    if (itemIndex == -1) {
+      return 'Value does not exist';
+    }
+
+    return arr[itemIndex].value;
+  }
+
+  getValueByLang(arr: Description[], langKey: string) {
+    if (!arr || arr.length == 0) {
+      return 'Value does not exist';
+    }
+
+    let itemIndex: number = arr.findIndex(
+      (description) => description.culture == langKey
+    );
+
+    if (itemIndex == -1) {
+      return 'Value does not exist';
+    }
+
+    return arr[itemIndex].value;
   }
 
   ngOnDestroy(): void {

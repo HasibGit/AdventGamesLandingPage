@@ -127,7 +127,7 @@
 
       <mat-checkbox color="primary" class="mb-24" value="termsAgreed" (click)="toggleAgreementState()">
         <p class="terms-and-conditions"><span>{{'CONDITIONS_AGREEMENT_TEXT' |
-            translate}}</span><span class="conditions-link">{{'CONDITIONS_LINK_TEXT' |
+            translate}}</span><span class="conditions-link" (click)="openTermsAndCondition()">{{'CONDITIONS_LINK_TEXT' |
             translate}}</span> <span class="star-indicator">*</span></p>
       </mat-checkbox>
 

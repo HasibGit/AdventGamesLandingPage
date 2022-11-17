@@ -33,6 +33,8 @@ export interface Season {
     startTime: string;
     endTime: string;
     seasonDescriptions: Description[];
+    prizeDescriptions: Description[];
+    termsAndConditionsUrls: Description[];
     theme: Theme;
   };
   isSuccess: boolean;
