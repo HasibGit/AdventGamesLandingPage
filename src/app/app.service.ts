@@ -58,7 +58,7 @@ export class AppService {
       .set('companyId', companyId);
 
     return this.http.get<PrizeAndWinningCriteria>(
-      `${environment.backendUrl}api/Query/GetGamePrize`,
+      `${environment.backendUrl}api/Query/GetGamePrizeOfTheDay`,
       {
         headers: new HttpHeaders().set(
           'Content-Type',
