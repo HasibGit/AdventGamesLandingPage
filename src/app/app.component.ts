@@ -76,6 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
       value: 'German',
     },
   ];
+  termsAgreed: boolean = false;
   isLoading: boolean;
   loading: boolean = true;
   subscription: Subscription;
@@ -469,7 +470,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openGameInNewTab() {
-    window.open(this.gameUrl, '_blank');
+    if (this.termsAgreed) {
+      window.open(this.gameUrl, '_blank');
+    }
+  }
+
+  toggleAgreementState() {
+    this.termsAgreed = !this.termsAgreed;
   }
 
   ngOnDestroy(): void {

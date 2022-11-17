@@ -65,6 +65,11 @@
   }
 }
 
+.disabled {
+  opacity: 50%;
+  cursor: not-allowed;
+}
+
 .terms-and-conditions {
   font-size: 12px;
   color: #432d20;
