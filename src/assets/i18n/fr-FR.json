@@ -4,5 +4,7 @@
   "HOURS": "heures",
   "MINUTES": "minutes",
   "SECONDS": "secondes",
-  "PLAY_GAME": "Jouer le jeu"
+  "PLAY_GAME": "Jouer le jeu",
+  "CONDITIONS_AGREEMENT_TEXT": "Oui, j'accepte les ",
+  "CONDITIONS_LINK_TEXT": "conditions de participation"
 }

@@ -113,17 +113,21 @@
           'de-DE' ? prizeAndWinningCriteria.winning_criteria_de : prizeAndWinningCriteria.winning_criteria_fr) |
           translate}}</span>
       </h2>
-      <h1 class="text-center offer mb-24" *ngIf="!isLoading">
+      <h1 class="text-center offer mb-20" *ngIf="!isLoading">
         {{currentlySelectedLanguage == 'en-US' ? prizeAndWinningCriteria.offer_en : (currentlySelectedLanguage ==
         'de-DE' ? prizeAndWinningCriteria.offer_de : prizeAndWinningCriteria.offer_fr) | translate}}
       </h1>
 
-      <section class="countdown mb-30" fxLayout="column" fxLayoutAlign="center center">
+      <section class="countdown mb-12" fxLayout="column" fxLayoutAlign="center center">
         <h2 class="winning-criteria">
           {{'COUNTDOWN_HEADER' | translate}}</h2>
         <countdown [config]="config" (event)="handleEvent($event)" class="count-down">
         </countdown>
       </section>
+
+      <p class="terms-and-conditions mb-24"><span>{{'CONDITIONS_AGREEMENT_TEXT' |
+          translate}}</span><span class="conditions-link">{{'CONDITIONS_LINK_TEXT' |
+          translate}}</span> <span class="star-indicator">*</span></p>
 
       <button class="play-game-btn">
         <span class="button-text" (click)="openGameInNewTab()">{{'PLAY_GAME' | translate}}</span></button>
