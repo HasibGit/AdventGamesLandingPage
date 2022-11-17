@@ -11,6 +11,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgxLoadingModule } from 'ngx-loading';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     MatChipsModule,
     MatProgressBarModule,
     HttpClientModule,
+    MatCheckboxModule,
     NgxLoadingModule.forRoot({}),
     TranslateModule.forRoot({
       defaultLanguage: 'de-DE',

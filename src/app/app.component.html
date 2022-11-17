@@ -125,9 +125,11 @@
         </countdown>
       </section>
 
-      <p class="terms-and-conditions mb-24"><span>{{'CONDITIONS_AGREEMENT_TEXT' |
-          translate}}</span><span class="conditions-link">{{'CONDITIONS_LINK_TEXT' |
-          translate}}</span> <span class="star-indicator">*</span></p>
+      <mat-checkbox color="primary" class="mb-24">
+        <p class="terms-and-conditions"><span>{{'CONDITIONS_AGREEMENT_TEXT' |
+            translate}}</span><span class="conditions-link">{{'CONDITIONS_LINK_TEXT' |
+            translate}}</span> <span class="star-indicator">*</span></p>
+      </mat-checkbox>
 
       <button class="play-game-btn">
         <span class="button-text" (click)="openGameInNewTab()">{{'PLAY_GAME' | translate}}</span></button>
