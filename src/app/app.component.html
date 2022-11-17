@@ -125,11 +125,13 @@
         </countdown>
       </section>
 
-      <mat-checkbox color="primary" class="mb-24" value="termsAgreed" (click)="toggleAgreementState()">
-        <p class="terms-and-conditions"><span>{{'CONDITIONS_AGREEMENT_TEXT' |
+      <div class="mb-24">
+        <mat-checkbox color="primary" value="termsAgreed" (click)="toggleAgreementState()">
+        </mat-checkbox>
+        <span class="terms-and-conditions"><span>{{'CONDITIONS_AGREEMENT_TEXT' |
             translate}}</span><span class="conditions-link" (click)="openTermsAndCondition()">{{'CONDITIONS_LINK_TEXT' |
-            translate}}</span> <span class="star-indicator">*</span></p>
-      </mat-checkbox>
+            translate}}</span> <span class="star-indicator">*</span></span>
+      </div>
 
       <button class="play-game-btn" [ngClass]="{'disabled': termsAgreed == false}">
         <span class="button-text" (click)="openGameInNewTab()">{{'PLAY_GAME' | translate}}</span></button>
