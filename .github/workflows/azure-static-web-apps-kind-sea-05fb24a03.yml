@@ -11,6 +11,8 @@ on:
 
 jobs:
   build_and_deploy_job:
+    env:
+        DIST_PATH: dist/space-shooter-landing-page
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
@@ -27,9 +29,9 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
+          app_location: "${{ env.DIST_PATH }}" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "dist/l3-angular-adventgames" # Built app content directory - optional
+          output_location: "dist/space-shooter-landing-page" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
