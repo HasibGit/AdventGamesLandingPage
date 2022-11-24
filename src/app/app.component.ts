@@ -81,6 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   loading: boolean = true;
   subscription: Subscription;
+  musicPlaying: boolean = false;
 
   constructor(
     private renderer: Renderer2,

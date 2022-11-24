@@ -12,6 +12,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,6 +41,8 @@ const appRoutes: Routes = [
     CountdownModule,
     MatChipsModule,
     MatProgressBarModule,
+    MatButtonModule,
+    MatIconModule,
     HttpClientModule,
     MatCheckboxModule,
     NgxLoadingModule.forRoot({}),
