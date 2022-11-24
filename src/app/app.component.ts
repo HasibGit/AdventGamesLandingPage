@@ -401,7 +401,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   setEnvironmentSpecificConfigs() {
-    this.brandLogoPath = BrandLogoPath.SPIGA;
+    this.brandLogoPath = BrandLogoPath.brandLogoPath;
   }
 
   getDaysTillChristmas() {
