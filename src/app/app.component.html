@@ -60,10 +60,6 @@
     <div class="bubble-type-2" style="top: 95vh; left:95vw"></div>
   </section>
 
-  <button mat-icon-button class="music-btn">
-    <mat-icon>{{musicPlaying ? 'volume_up' : 'volume_off'}}</mat-icon>
-  </button>
-
   <div fxLayout="column" fxLayoutAlign="center center" class="lang-selection">
     <mat-chip-list aria-label="lang selection">
       <div *ngFor="let language of languages">
@@ -73,6 +69,10 @@
       </div>
     </mat-chip-list>
   </div>
+
+  <button mat-icon-button class="music-btn" *ngIf="musicLoaded" (click)="toggleMusicPlay()">
+    <mat-icon>{{musicPlaying ? 'volume_up' : 'volume_off'}}</mat-icon>
+  </button>
 
 
   <div class="offer-card offer-card-border" fxLayout="column" fxLayoutAlign="space-between center">
