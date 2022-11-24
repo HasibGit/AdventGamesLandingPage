@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   environmentName: 'SPIGA',
   companyId: 'selise',
-  tabTitle: 'Spiga',
+  tabTitle: 'SELISE Advent Games',
   backendUrl: 'https://localhost:7238/',
 };
 
