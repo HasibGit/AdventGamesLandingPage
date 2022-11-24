@@ -209,9 +209,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isLoading = false;
 
           this.setPrizeAndWinningCriteriaColor();
-
-          this.loadAudio();
-          this.playAudio();
         })
       )
       .subscribe();
@@ -547,34 +544,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     return arr[itemIndex].value;
-  }
-
-  loadAudio() {
-    this.bgMusic = new Audio();
-    this.bgMusic.src = '../assets/sounds/background-music.mp3';
-    this.bgMusic.load();
-    this.bgMusic.loop = true;
-    this.musicLoaded = true;
-  }
-
-  playAudio() {
-    this.bgMusic.play();
-    this.musicPlaying = true;
-  }
-
-  pauseAudio() {
-    this.bgMusic.pause();
-    this.musicPlaying = false;
-  }
-
-  toggleMusicPlay() {
-    if (this.musicPlaying) {
-      this.pauseAudio();
-      this.musicPlaying = false;
-    } else {
-      this.playAudio();
-      this.musicPlaying = true;
-    }
   }
 
   ngOnDestroy(): void {
