@@ -11,8 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppService } from './app.service';
 import { Season, Theme, Description } from 'src/interfaces/season.interface';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { tap, concatMap } from 'rxjs/operators';
 import { GameSchedule } from 'src/interfaces/game-schedule.interface';
@@ -90,9 +88,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private elemRef: ElementRef,
     private titleService: Title,
     private translateService: TranslateService,
-    private appservice: AppService,
-    private router: Router,
-    private location: Location
+    private appservice: AppService
   ) {}
 
   ngOnInit() {
@@ -450,10 +446,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.setSeasonDescriptionTranslation(this.currentlySelectedLanguage);
     this.setTermsAndConditionsUrl(this.currentlySelectedLanguage);
     this.translateService.use(language.key);
-
-    this.location.replaceState(
-      '/' + this.currentlySelectedLanguage.slice(0, 2)
-    );
   }
 
   setCountdownTimerTranslation(currentLanguage: string) {

@@ -20,11 +20,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'de',
-    pathMatch: 'full',
-  },
-  {
-    path: 'de',
     component: AppComponent,
   },
 ];
