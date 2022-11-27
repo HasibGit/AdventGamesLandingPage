@@ -71,7 +71,7 @@
   </div>
 
   <div class="offer-card offer-card-border" fxLayout="column" fxLayoutAlign="space-between center">
-    <img src="../assets/images/long snow.svg" alt="" class="snow-img">
+    <img src="../assets/images/long snow.svg" alt="" class="snow-img" *ngIf="!isLoading">
     <section class="top-section mt-12" fxLayout="column" fxLayoutAlign="center center">
       <img src="{{brandLogoPath}}" alt="" class="brand-logo mb-20">
       <h3 class="mb-24 season-deadline">
