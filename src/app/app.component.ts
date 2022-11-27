@@ -16,6 +16,7 @@ import { tap, concatMap } from 'rxjs/operators';
 import { GameSchedule } from 'src/interfaces/game-schedule.interface';
 import { BrandLogoPath } from 'src/shared/brand-logo-path.config';
 import { Subscription } from 'rxjs';
+import { Company } from 'src/interfaces/company.interface';
 
 @Component({
   selector: 'app-root',
@@ -101,13 +102,30 @@ export class AppComponent implements OnInit, OnDestroy {
     this.setEnvironmentSpecificConfigs();
     this.getDaysTillChristmas();
     this.getSecondsLeftTillNextOffer();
-    this.getSeason();
+    this.setPageThemeAndContent();
   }
 
-  getSeason() {
+  setPageThemeAndContent() {
     this.subscription = this.appservice
-      .getSeason(environment.companyId)
+      .getCompany(environment.companyId)
       .pipe(
+        tap((company: Company) => {
+          if (
+            company.errors &&
+            company.errors.errors &&
+            company.errors.errors.length > 0
+          ) {
+            this.no_season_error = company.errors.errors[0];
+            this.isLoading = false;
+            this.loading = false;
+            return;
+          }
+
+          this.currentlySelectedLanguage = company.result.defaultLanguage
+            ? this.convertLangResponse(company.result.defaultLanguage)
+            : 'en-US';
+        }),
+        concatMap((company: Company) => this.getSeason(environment.companyId)),
         tap((seasonResponse: Season) => {
           if (
             seasonResponse.errors &&
@@ -298,6 +316,10 @@ export class AppComponent implements OnInit, OnDestroy {
       payload.lang,
       payload.companyId
     );
+  }
+
+  getSeason(companyId: string) {
+    return this.appservice.getSeason(companyId);
   }
 
   getGameSchedule(companyId: string, seasonId: string) {
@@ -536,6 +558,25 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     return arr[itemIndex].value;
+  }
+
+  convertLangResponse(lang: string) {
+    let convertedLangKey: string = '';
+    switch (lang) {
+      case 'en':
+        convertedLangKey = 'en-US';
+        break;
+      case 'de':
+        convertedLangKey = 'de-DE';
+        break;
+      case 'fr':
+        convertedLangKey = 'fr-FR';
+        break;
+      default:
+        convertedLangKey = 'en-US';
+    }
+
+    return convertedLangKey;
   }
 
   ngOnDestroy(): void {

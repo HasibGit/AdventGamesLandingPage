@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { Season } from 'src/interfaces/season.interface';
 import { GameSchedule } from 'src/interfaces/game-schedule.interface';
+import { Company } from 'src/interfaces/company.interface';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -10,6 +11,22 @@ import { environment } from '../environments/environment';
 })
 export class AppService {
   constructor(private http: HttpClient) {}
+
+  getCompany(companyId: string) {
+    let httpParams = new HttpParams().set('companyId', companyId);
+
+    return this.http.get<Company>(
+      `${environment.backendUrl}api/Query/GetCompany`,
+      {
+        headers: new HttpHeaders().set(
+          'Content-Type',
+          'application/json; charset=utf-8'
+        ),
+        params: httpParams,
+        responseType: 'json',
+      }
+    );
+  }
 
   getSeason(companyId: string) {
     let httpParams = new HttpParams().set('companyId', companyId);
