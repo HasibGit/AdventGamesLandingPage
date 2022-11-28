@@ -65,15 +65,15 @@ export class AppComponent implements OnInit, OnDestroy {
   languages: { key: string; value: string }[] = [
     {
       key: 'en-US',
-      value: 'English',
+      value: 'ENGLISH_BUTTON_LABEL',
     },
     {
       key: 'fr-FR',
-      value: 'French',
+      value: 'FRENCH_BUTTON_LABEL',
     },
     {
       key: 'de-DE',
-      value: 'German',
+      value: 'GERMAN_BUTTON_LABEL',
     },
   ];
   termsAgreed: boolean = false;

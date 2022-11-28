@@ -64,7 +64,7 @@
     <mat-chip-list aria-label="lang selection">
       <div *ngFor="let language of languages">
         <mat-chip (click)="selectLang(language)">
-          <span>{{language.value}}</span>
+          <span>{{language.value | translate}}</span>
         </mat-chip>
       </div>
     </mat-chip-list>

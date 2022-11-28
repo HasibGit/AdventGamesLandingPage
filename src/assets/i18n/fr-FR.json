@@ -6,5 +6,8 @@
   "SECONDS": "secondes",
   "PLAY_GAME": "Jouer le jeu",
   "CONDITIONS_AGREEMENT_TEXT": "Oui, j'accepte les ",
-  "CONDITIONS_LINK_TEXT": "conditions de participation"
+  "CONDITIONS_LINK_TEXT": "conditions de participation",
+  "ENGLISH_BUTTON_LABEL": "Anglais",
+  "GERMAN_BUTTON_LABEL": "Allemand",
+  "FRENCH_BUTTON_LABEL": "Français"
 }
