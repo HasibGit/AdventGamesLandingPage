@@ -12,10 +12,10 @@ import { AppService } from './app.service';
 import { Season, Theme, Description } from 'src/interfaces/season.interface';
 import { PrizeAndWinningCriteria } from 'src/interfaces/prize-winning-criteria.interface';
 import { environment } from 'src/environments/environment';
-import { tap, concatMap } from 'rxjs/operators';
+import { tap, concatMap, takeUntil } from 'rxjs/operators';
 import { GameSchedule } from 'src/interfaces/game-schedule.interface';
 import { BrandLogoPath } from 'src/shared/brand-logo-path.config';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Company } from 'src/interfaces/company.interface';
 
 @Component({
@@ -80,9 +80,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   loading: boolean = true;
   subscription: Subscription;
-  bgMusic: any;
-  musicPlaying: boolean = false;
-  musicLoaded: boolean = false;
+  stopApiCallChain: Subject<void> = new Subject();
 
   constructor(
     private renderer: Renderer2,
@@ -109,6 +107,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.appservice
       .getCompany(environment.companyId)
       .pipe(
+        takeUntil(this.stopApiCallChain),
         tap((company: Company) => {
           if (
             company.errors &&
@@ -118,7 +117,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.no_season_error = company.errors.errors[0];
             this.isLoading = false;
             this.loading = false;
-            return;
+            this.stopApiCallChain.next();
           }
 
           this.currentlySelectedLanguage = company.result.defaultLanguage
@@ -135,7 +134,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.no_season_error = seasonResponse.errors.errors[0];
             this.isLoading = false;
             this.loading = false;
-            return;
+            this.stopApiCallChain.next();
           }
           this.season = seasonResponse;
           this.seasonDescriptions = this.season.result.seasonDescriptions;
@@ -165,7 +164,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.offer_error = gameScheduleResponse.errors.errors[0];
             this.isLoading = false;
             this.setPrizeAndWinningCriteriaColor();
-            return;
+            this.stopApiCallChain.next();
           }
           this.gameUrl = gameScheduleResponse.result.game.gameUrl;
         }),
@@ -183,7 +182,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.offer_error = prizeAndWinningCriteriaResponse.errors.errors[0];
             this.isLoading = false;
             this.setPrizeAndWinningCriteriaColor();
-            return;
+            this.stopApiCallChain.next();
           }
 
           this.prizeAndWinningCriteria.offer_en = this.getValueByLang(
@@ -228,7 +227,9 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe(
         (next) => {},
         (error) => {
-          this.no_season_error = 'Sorry, server is not responding.';
+          if (!this.no_season_error || this.no_season_error == '') {
+            this.no_season_error = 'Sorry, server is not responding.';
+          }
           this.isLoading = false;
           this.loading = false;
         }
