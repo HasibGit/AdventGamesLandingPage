@@ -225,7 +225,14 @@ export class AppComponent implements OnInit, OnDestroy {
           this.setPrizeAndWinningCriteriaColor();
         })
       )
-      .subscribe();
+      .subscribe(
+        (next) => {},
+        (error) => {
+          this.no_season_error = 'Sorry, server is not responding.';
+          this.isLoading = false;
+          this.loading = false;
+        }
+      );
   }
 
   setPrizeAndWinningCriteriaColor() {
