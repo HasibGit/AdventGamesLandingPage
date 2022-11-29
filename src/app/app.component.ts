@@ -227,7 +227,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe(
         (next) => {},
         (error) => {
-          if (!this.no_season_error || this.no_season_error == '') {
+          if (!this.no_season_error) {
             this.no_season_error = 'Sorry, server is not responding.';
           }
           this.isLoading = false;
